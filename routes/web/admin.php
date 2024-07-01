@@ -18,6 +18,7 @@ use App\Http\Controllers\ManageUserController;
 use App\Http\Controllers\ConfigurationController;
 use App\Http\Controllers\ParentPackageController;
 use App\Http\Controllers\VariationTypeController;
+use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\SpecialOccasionController;
 
 Route::group(
@@ -49,6 +50,16 @@ Route::group(
                 Route::post('/image-upload/{uuid}', [AdminController::class, 'updateImage'])->name('admin.updateImage');
                 Route::delete('/delete/{id}', [AdminController::class, 'destroyAdmin'])->name('admin.destroyAdmin');
             });
+
+             #subscription route
+             Route::get('/subscription',[SubscriptionController::class,'subscriptionList'])->name('admin.subscription');
+             Route::get('/subscriptioncreate',[SubscriptionController::class,'create'])->name('admin.subscriptionCreate');
+             Route::post('/subscriptionstore',[SubscriptionController::class,'store'])->name('admin.subscriptionStore');
+             Route::get('/subscriptionview/{id}',[SubscriptionController::class,'view'])->name('admin.subscriptionView');
+             Route::get('/subscriptionedit/{id}',[SubscriptionController::class,'edit'])->name('admin.subscriptionEdit');
+             Route::post('/subscriptionupdate/{id}',[SubscriptionController::class,'update'])->name('admin.subscriptionUpdate');
+             Route::get('/subscriptiondestroy/{id}',[SubscriptionController::class,'destroy'])->name('admin.subscriptionDestroy');
+
             #admin user route
                 Route::get('/', [ManageUserController::class, 'usersList'])->name('admin.usersList');
                 Route::get('/view/{uuid}', [ManageUserController::class, 'viewUser'])->name('admin.viewUser');

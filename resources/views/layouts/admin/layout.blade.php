@@ -43,6 +43,7 @@
 
     <!-- JAVASCRIPT -->
     @include('layouts.admin.footer.footerJS')
+    {{-- @yield('script') --}}
 </body>
 
 </html>

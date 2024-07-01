@@ -63,7 +63,7 @@
                 </div>
                 <!--end col-->
             </div>
-     </x-slot>
+    </x-slot>
         <x-slot name="table_id"> usersTable </x-slot>
         <x-slot name="table_th">
             <th>{{ __('main.image') }}</th>

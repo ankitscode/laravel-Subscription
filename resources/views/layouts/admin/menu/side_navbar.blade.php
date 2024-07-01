@@ -55,7 +55,7 @@
                                 @endcan
                                 @can('View All Admin')
                                     <li class="nav-item">
-                                        <a href="" class="nav-link {{ (request()->is('users/admin*')) ? 'active' : '' }}">@lang('Subscription')</a>
+                                        <a href="{{ route('admin.subscription') }}" class="nav-link {{ (request()->is('users/subscription*')) ? 'active' : '' }}">@lang('Subscription')</a>
                                     </li>
                                 @endcan
                                 @can('View All Users daksj;lkjfaljsdlj')

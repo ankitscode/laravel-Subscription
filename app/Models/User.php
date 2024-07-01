@@ -5,7 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Media;
 use App\Traits\MyAutiting;
-use Laravel\Sanctum\HasApiTokens;
+ use Laravel\Passport\HasApiTokens;
 use Illuminate\Support\Facades\Log;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;

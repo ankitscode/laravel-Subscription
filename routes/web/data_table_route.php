@@ -12,6 +12,7 @@ use App\Http\Controllers\ManageRoleController;
 use App\Http\Controllers\ManageUserController;
 use App\Http\Controllers\AttributeSetController;
 use App\Http\Controllers\SpecialOccasionController;
+use App\Http\Controllers\SubscriptionController;
 
 Route::group(
     [
@@ -30,6 +31,7 @@ Route::group(
         Route::get('/all-orderlistAdmin', [OrdersController::class, 'dataTableAdminOrderList'])->name('dataTable.dataTableAdminOrderList');
         Route::get('/all-orderlist', [HomeController::class, 'dataTableOrderListDashoard'])->name('dataTable.dataTableOrderListDashoard');
         Route::get('/roles-list-table', [ManageRoleController::class, 'dataTableRolesListTable'])->name('dataTable.dataTableRolesListTable');
+        Route::get('/subscription-list-table',[SubscriptionController::class,'subscriptiondatatable'])->name('dataTable.subscriptiondatatable');
     }
 
 );

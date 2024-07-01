@@ -12,11 +12,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call(DefaultAdmin::class);
-        $this->call(LockupType::class);
-        $this->call(Lockup::class);
-        $this->call(PermissionSeeder::class);
-        $this->call(RolesSeeder::class);
+        // $this->call(DefaultAdmin::class);
+        $this->call(SubscriptionSeeder::class);
+        // $this->call(LockupType::class);
+        // $this->call(Lockup::class);
+        // $this->call(PermissionSeeder::class);
+        // $this->call(RolesSeeder::class);
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([
