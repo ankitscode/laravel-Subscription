@@ -4,6 +4,8 @@ use App\Http\Controllers\AdminController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AdminAuthController;
+use App\Http\Controllers\Api\SubscriptionApiController;
+use App\Http\Controllers\Api\CategoriesApiController;
 
 
 /*
@@ -35,5 +37,11 @@ Route::group(['middleware' => ['auth:adminapi']], function () {
     Route::post('/changepassword',[AdminAuthController::class,'changePassword']);
     Route::post('/logout',[AdminAuthController::class,'logout']);
     Route::post('/deleteadmin/{id}',[AdminAuthController::class,'delete']);
+
+    //##Api for getting suscription
+     Route::get('/getsubscription',[SubscriptionApiController::class,'getSubscription']);
+     
+    //##Api for getting categories
+     Route::get('/getcategories',[CategoriesApiController::class,'getCategories']);
 });
 

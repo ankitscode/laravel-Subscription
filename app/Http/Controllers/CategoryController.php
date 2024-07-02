@@ -16,43 +16,37 @@ class CategoryController extends Controller
 {
     public function indexCategory(Request $request)
     {
-        if(!Auth::user() || !in_array(Auth::user()->user_type, [1,2])) abort(404);
+        // if(!Auth::user() || !in_array(Auth::user()->user_type, [1,2])) abort(404);
         $categories = Category::get();
-        // $test = collect($categories)->map(function($n,$a){
-        //     $n->name = '{"en":"$n->name","ar":""}';
-        //     $n->save();
-        //     return $n;
-        // });
-        // dd($categories);
-        return view('admin.catalog.categories.categories_list',compact('categories'));
+        return view('admin.catalog.categories.categories_list', compact('categories'));
     }
 
 
-    public function storeCategory(storeCategory $request)
+    public function storeCategory(Request $request)
     {
-        if(!Auth::user() || !in_array(Auth::user()->user_type, [1,2])) abort(404);
-        DB::beginTransaction();
+        // if(!Auth::user() || !in_array(Auth::user()->user_type, [1,2])) abort(404);
+        $request->validate([
+            'name' => 'required|string|max:30',
+            'is_active'=>'required',
+             'is_menu'=>'required',
+        ]);
         try {
-           $category =  Category::create([
-                'name' => $request->category_name,
-                // 'parent_id' => $request->parent_category,
-                'is_active' => isset($request->is_active) && $request->is_active =='on'? true:false,
-                'is_menu' => isset($request->is_menu) && $request->is_menu =='on'? true:false,
-            ]);
-            if ($request->hasFile('image')) {
-                $path  = config('image.category_image_path_store');
-                $media = CommenController::saveImage($request->image, $path);
-                $category->category_image_id  = $media;
-            }
+            $category =  new Category;
+            $category->name = $request->name;
+            $category->is_active = isset($request->is_active) && $request->is_active == 'on' ? 1 : 0;
+            $category->is_menu = isset($request->is_menu) && $request->is_menu == 'on' ? 1 : 0;
+            // if ($request->hasFile('image')) {
+            //     $path  = config('image.category_image_path_store');
+            //     $media = CommenController::saveImage($request->image, $path);
+            //     $category->category_image_id  = $media;
+            // }
             $category->save();
-            DB::commit();
-            Session::flash('alert-success', __('message.Category_saved_successfully'));
+          Session::flash('alert-success', __('message.Category_saved_successfully'));
             return redirect()->route('admin.categoriesList');
-
         } catch (\Exception $e) {
             DB::rollBack();
             Log::error('#######  CategoryController -> storeCategory() #####' . $e->getMessage());
-            Session::flash('alert-error',__('message.something_went_wrong'));
+            Session::flash('alert-error', __('message.something_went_wrong'));
             return redirect()->back()->withInput();
         }
     }
@@ -60,38 +54,37 @@ class CategoryController extends Controller
 
     public function viewCategory($id)
     {
-        if(!Auth::user() || !in_array(Auth::user()->user_type, [1,2])) abort(404);
+        // if(!Auth::user() || !in_array(Auth::user()->user_type, [1,2])) abort(404);
         try {
             $categories = Category::with('media')->findOrFail($id);
-            return view('admin.catalog.categories.view_category',compact('categories'));
+            return view('admin.catalog.categories.view_category', compact('categories'));
         } catch (\Exception $e) {
-            Log::error('##### CategoryController -> viewCategory #####' .$e->getMessage());
+            Log::error('##### CategoryController -> viewCategory #####' . $e->getMessage());
             return redirect()->back();
         }
-
     }
 
 
-    public function editCategory(Request $request,$id)
+    public function editCategory(Request $request, $id)
     {
-        if(!Auth::user() || !in_array(Auth::user()->user_type, [1,2])) abort(404);
+        // if(!Auth::user() || !in_array(Auth::user()->user_type, [1,2])) abort(404);
         try {
             $categories = Category::find($id);
-            if ($request->ajax()){
-            if (!empty($categories)) {
+            if ($request->ajax()) {
+                if (!empty($categories)) {
                     return response(["status" => 1, "message" => __('message.category_list'), 'data' => $categories], Response::HTTP_OK);
                 } else {
                     return response(["status" => 1, "message" => __('message.category_list'), 'data' => 'empty'], Response::HTTP_OK);
                 }
             }
-        return view('admin.catalog.categories.edit_category',compact('categories','parent_categories'));
+            return view('admin.catalog.categories.edit_category', compact('categories', 'parent_categories'));
         } catch (\Exception $e) {
-            if ($request->ajax()){
+            if ($request->ajax()) {
                 Log::error('######## CategoryController -> editCategory() #######  ' . $e->getMessage());
                 return response()->json(["status" => 0, "message" => __('message.something_went_wrong')], Response::HTTP_INTERNAL_SERVER_ERROR);
             }
             Log::error('#######  CategoryController -> editCategory() #####' . $e->getMessage());
-            Session::flash('alert-error',__('message.something_went_wrong'));
+            Session::flash('alert-error', __('message.something_went_wrong'));
             return redirect()->back()->withInput();
         }
     }
@@ -99,37 +92,35 @@ class CategoryController extends Controller
 
     public function updateCategory(Request $request, $id)
     {
-        if(!Auth::user() || !in_array(Auth::user()->user_type, [1,2])) abort(404);
+        // if(!Auth::user() || !in_array(Auth::user()->user_type, [1,2])) abort(404);
         DB::beginTransaction();
         try {
             $category =  Category::findOrFail($id);
-                 $category->name = $request->category_name;
-                //  $category->parent_id = $request->parent_category;
-                 $category->is_active = isset($request->is_active) && $request->is_active =='on'? true:false;
-                 $category->is_menu = isset($request->is_menu) && $request->is_menu =='on'? true:false;
-
-             if ($request->hasFile('image')) {
-                 $path  = config('image.category_image_path_store');
-                 $media = CommenController::saveImage($request->image, $path);
-                 $category->category_image_id  = $media;
-             }
-             $category->save();
-             DB::commit();
-             Session::flash('alert-success', __('message.Category_updated_successfully'));
-             return redirect()->route('admin.categoriesList');
-
-         } catch (\Exception $e) {
+            $category->name = $request->category_name;
+            //  $category->parent_id = $request->parent_category;
+            $category->is_active = isset($request->is_active) && $request->is_active == 'on' ? true : false;
+            $category->is_menu = isset($request->is_menu) && $request->is_menu == 'on' ? true : false;
+            //  if ($request->hasFile('image')) {
+            //      $path  = config('image.category_image_path_store');
+            //      $media = CommenController::saveImage($request->image, $path);
+            //      $category->category_image_id  = $media;
+            //  }
+            $category->save();
+            DB::commit();
+            Session::flash('alert-success', __('message.Category_updated_successfully'));
+            return redirect()->route('admin.categoriesList');
+        } catch (\Exception $e) {
             DB::rollBack();
-             Log::error('#######  CategoryController -> updateCategory() #####' . $e->getMessage());
-             Session::flash('alert-error',__('message.something_went_wrong'));
-             return redirect()->back()->withInput();
-         }
+            Log::error('#######  CategoryController -> updateCategory() #####' . $e->getMessage());
+            Session::flash('alert-error', __('message.something_went_wrong'));
+            return redirect()->back()->withInput();
+        }
     }
 
 
     public function destroyCategory($id)
     {
-        if(!Auth::user() || !in_array(Auth::user()->user_type, [1,2])) abort(404);
+        // if(!Auth::user() || !in_array(Auth::user()->user_type, [1,2])) abort(404);
         DB::beginTransaction();
         try {
             Category::where('id', $id)->delete();
@@ -140,18 +131,15 @@ class CategoryController extends Controller
             Log::error('####### CategoryController -> destroyCategory() #######  ' . $e->getMessage());
             Session::flash('alert-error', __('message.something_went_wrong'));
             return redirect()->back();
-
         }
     }
 
     public function dataTablecategory()
     {
-        $query = Category::with(['media'=>function($query){
-            $query->select('id','thumbnail_name');
-        }]);
+        $query = Category::get();
         if (!empty($query)) {
             return DataTables::of($query)->make(true);
-          }
+        }
         return DataTables::of([])->make(true);
     }
 

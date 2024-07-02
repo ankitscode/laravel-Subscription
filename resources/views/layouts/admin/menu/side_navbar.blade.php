@@ -82,10 +82,17 @@
                             <ul class="nav nav-sm flex-column">
                                 @if(Auth::user()->can('View All Products'))
                                     <li class="nav-item">
-                                        <a href="{{route('admin.productList')}}" class="nav-link {{ (request()->is('catalog/products*')) ? 'active' : '' }}">@lang('main.products')</a>
+                                        <a href="{{route('admin.categoriesList')}}" class="nav-link {{ (request()->is('catalog/categories*')) ? 'active' : '' }}">@lang('Categories')</a>
                                     </li>
                                 @endif
                             </ul>
+                            {{-- <ul class="nav nav-sm flex-column">
+                                @if(Auth::user()->can('View All Products'))
+                                    <li class="nav-item">
+                                        <a href="" class="nav-link {{ (request()->is('catalog/*')) ? 'active' : '' }}">@lang('Catogories')</a>
+                                    </li>
+                                @endif
+                            </ul> --}}
                         </div>
                     </li> <!--- Catalog -->
                 @endcanany

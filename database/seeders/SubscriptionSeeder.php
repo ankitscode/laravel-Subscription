@@ -14,10 +14,9 @@ class SubscriptionSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('subscriptions')->insert([
-            'name' => 'Basic plan',
-            'amount'=>'299',
-            'duration' => '30 days',            
-        ]);
+            Subscription::firstOrCreate(['name' => 'Yearly', 'duration' => '1 year' ,'amount' => 2999]);
+            Subscription::firstOrCreate(['name' => 'Half yearly', 'duration' => '6 months','amount' => 1599]);
+            Subscription::firstOrCreate(['name' => 'Monthly', 'duration' => '1 month','amount' => 299]);
+         
     }
 }

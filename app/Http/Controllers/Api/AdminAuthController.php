@@ -23,13 +23,13 @@ class AdminAuthController extends Controller
     /**
      * Log in a Admin.
      *@subgroup admin
-     * @bodyParam email string required valid email address The email of the user.
-     * @bodyParam password string required min:8 The password of the user.
+     * @bodyParam email string required valid email address The email of the admin.
+     * @bodyParam password string required min:8 The password of the admin.
      * 
      * @response {
      *     "success": true,
      *     "token": "eyJhbGciOiAiSFMyNTYiLCJraWQiOiAiYWMwMDZmMDYtMGM0ZC00MTQ5LWE5MTYtYjEwYzQ2N2YzZmMwIn0.eyJqdGkiOiAibG9naW4tY29",
-     *     "user": {
+     *     "admin": {
      *    "name": "developer",
      *    "email": "example7pm@gmail.com",
      *    "full_name": "developer",
@@ -69,7 +69,7 @@ class AdminAuthController extends Controller
                 return response()->json([
                     'success' => true,
                     'token' => $user->createToken('appToken')->accessToken,
-                    'user' => $user,
+                    'Admin' => $user,
                 ], 200);
             } else {
                 // failure to authenticate
@@ -144,15 +144,15 @@ class AdminAuthController extends Controller
      * 
      *@authenticated
      * @group admin Management
-     * @bodyParam full_name string required The full name of the admin user.
-     * @bodyParam phone string required The phone number of the admin user.
-     * @bodyParam email string required valid email address The email address of the admin user. Must be unique.
-     * @bodyParam birthdate string optional The birthdate of the admin user (YYYY-MM-DD format).
-     * @bodyParam gender_type string optional The gender type of the admin user. Allowed values: male, female, other.
-     * @bodyParam is_active boolean optional Whether the admin user is active or not (true/false).
-     * @bodyParam password string required The password for the admin user. Minimum length: 8 characters.
-     * @bodyParam role_ids array required Array of role IDs assigned to the admin user.
-     * @bodyParam image file optional The profile image of the admin user (jpg, jpeg, png, gif formats only).
+     * @bodyParam full_name string required The full name of the admin admin.
+     * @bodyParam phone string required The phone number of the admin admin.
+     * @bodyParam email string required valid email address The email address of the admin admin. Must be unique.
+     * @bodyParam birthdate string optional The birthdate of the admin admin (YYYY-MM-DD format).
+     * @bodyParam gender_type string optional The gender type of the admin admin. Allowed values: male, female, other.
+     * @bodyParam is_active boolean optional Whether the admin admin is active or not (true/false).
+     * @bodyParam password string required The password for the admin admin. Minimum length: 8 characters.
+     * @bodyParam role_ids array required Array of role IDs assigned to the admin admin.
+     * @bodyParam image file optional The profile image of the admin admin (jpg, jpeg, png, gif formats only).
      * @response {
      *     "status": true,
      *     "message": "Admin Created successfully",
@@ -533,7 +533,7 @@ class AdminAuthController extends Controller
      * 
      * @response {
      *     "status": true,
-     *     "message": "User deleted successfully",
+     *     "message": "Admin deleted successfully",
     *  "user": {
      *      "name": "developer",
      *      "email": "devsoft7pm@gmail.com",
