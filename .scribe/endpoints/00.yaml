@@ -1,0 +1,97 @@
+name: Endpoints
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - POST
+    uri: api/adminlogin
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: admin
+      subgroupDescription: ''
+      title: 'Log in a Admin.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      email:
+        name: email
+        description: 'valid email address The email of the admin.'
+        required: true
+        example: bud25@example.net
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      password:
+        name: password
+        description: 'min:8 The password of the admin.'
+        required: true
+        example: 'mqV&iU_^'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      email: bud25@example.net
+      password: 'mqV&iU_^'
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+              "success": true,
+              "token": "eyJhbGciOiAiSFMyNTYiLCJraWQiOiAiYWMwMDZmMDYtMGM0ZC00MTQ5LWE5MTYtYjEwYzQ2N2YzZmMwIn0.eyJqdGkiOiAibG9naW4tY29",
+              "admin": {
+             "name": "developer",
+             "email": "example7pm@gmail.com",
+             "full_name": "developer",
+             "phone": "9998553040",
+             "birthdate": null,
+            "gender_type": 9,
+             "city_type": null,
+             "country_type": null,
+             "address": null,
+             "is_active": 1,
+             "uuid": "c4dcce75-5b80-4ee7-af5e-6d7ce455ee5f",
+            "profile_image": ""
+               }
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+              "success": false,
+              "message": "Failed to authenticate."
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 500
+        content: |-
+          {
+              "success": false,
+              "message": "Internal Server Error"
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []

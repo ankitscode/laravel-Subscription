@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AdminAuthController;
 use App\Http\Controllers\Api\SubscriptionApiController;
 use App\Http\Controllers\Api\CategoriesApiController;
-
+use App\Http\Controllers\Api\OrderApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +19,9 @@ use App\Http\Controllers\Api\CategoriesApiController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 /**
  * Login Api
  */
@@ -43,5 +43,8 @@ Route::group(['middleware' => ['auth:adminapi']], function () {
      
     //##Api for getting categories
      Route::get('/getcategories',[CategoriesApiController::class,'getCategories']);
+
+     //##Api for orders
+     Route::post('/order/{id}',[OrderApiController::class,'store']);
 });
 

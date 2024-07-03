@@ -60,7 +60,6 @@ class AdminAuthController extends Controller
      */
     public function adminLogin(Request $request)
     {
-        // dd($request);
         try {
             if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
                 // successfull authentication
@@ -92,6 +91,8 @@ class AdminAuthController extends Controller
      *
      * @group admin Management
      * @authenticated
+     * BearerToken is needed for authentication
+     * 
      * @response {
      *     "status": true,
      *     "data": {
@@ -143,6 +144,7 @@ class AdminAuthController extends Controller
      * Created the authenticated admin's profile.
      * 
      *@authenticated
+     * BearerToken is needed for authentication
      * @group admin Management
      * @bodyParam full_name string required The full name of the admin admin.
      * @bodyParam phone string required The phone number of the admin admin.
@@ -233,7 +235,7 @@ class AdminAuthController extends Controller
             $user->save();
             DB::commit();
 
-            return response()->json(['message' => 'Admin created successfully', 'user' => $user], 201);
+            return response()->json(['message' => 'Admin created successfully', 'data' => $user], 201);
         } catch (\Exception $e) {
             Log::error("#### AdminAuthController->storeAdmin #### " . $e->getMessage());
             return response()->json([
@@ -343,7 +345,7 @@ class AdminAuthController extends Controller
 
     /**
      * Update admin's profile image.
-     *
+     *@group admin Management
      * This API endpoint updates the profile image of an admin identified by UUID.
      *
      * @authenticated
@@ -409,6 +411,7 @@ class AdminAuthController extends Controller
      * 
      * @group admin Management
      * @authenticated
+     * BearerToekn is required for  authentication
      * @bodyParam full_name string required The full name of the admin user.
      * @bodyParam phone string required The phone number of the admin user.
      *
@@ -465,8 +468,9 @@ class AdminAuthController extends Controller
      *
      * Log out the authenticated user.
      *
-     * @group Authentication
-     * 
+     * @group admin Management
+     * @authenticated
+     * BearerToekn is required for  authentication
      * @response {
      *  "success": true,
      *  "message": "Logged out successfully.",
@@ -525,16 +529,19 @@ class AdminAuthController extends Controller
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
-/**
+    /**
      * Delete the admin profile.
      *
-     * @group User Management
+     * @group admin Management
+     * @authenticated
+     * BearerToken is required for  authentication
      * @urlParam id required The ID of the user to delete.
+     * 
      * 
      * @response {
      *     "status": true,
      *     "message": "Admin deleted successfully",
-    *  "user": {
+     *  "user": {
      *      "name": "developer",
      *      "email": "devsoft7pm@gmail.com",
      *     "full_name": "developer",
@@ -561,15 +568,16 @@ class AdminAuthController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function delete($id){
+    public function delete($id)
+    {
 
         $user = Auth::user();
-            if (!$user) {
-                return response()->json(['error' => 'Unauthenticated.'], 401);
-            }
+        if (!$user) {
+            return response()->json(['error' => 'Unauthenticated.'], 401);
+        }
         DB::beginTransaction();
         try {
-            User::where('id','=',$id)->delete();
+            User::where('id', '=', $id)->delete();
             DB::commit();
             return response()->json(['status' => 'Admin deleted successfully']);
         } catch (\Exception $e) {
@@ -578,7 +586,6 @@ class AdminAuthController extends Controller
                 'success' => false,
                 'message' => 'Internal Server Error',
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
-
         }
     }
 }

@@ -1,0 +1,741 @@
+name: 'admin Management'
+description: 'This API endpoint updates the profile image of an admin identified by UUID.'
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/getadminprofile
+    metadata:
+      groupName: 'admin Management'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: "Retrieve the authenticated admin's profile."
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+              "status": true,
+              "data": {
+             "name": "developer",
+             "email": "example7pm@gmail.com",
+             "full_name": "developer",
+             "phone": "9998553040",
+             "birthdate": null,
+            "gender_type": 9,
+             "city_type": null,
+             "country_type": null,
+             "address": null,
+             "is_active": 1,
+             "uuid": "c4dcce75-5b80-4ee7-af5e-6d7ce455ee5f",
+            "profile_image": ""
+               }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+              "message": "Unauthenticated."
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/storeadmin
+    metadata:
+      groupName: 'admin Management'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: "Created the authenticated admin's profile."
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: multipart/form-data
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      full_name:
+        name: full_name
+        description: 'The full name of the admin admin.'
+        required: true
+        example: dolores
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      phone:
+        name: phone
+        description: 'The phone number of the admin admin.'
+        required: true
+        example: a
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      email:
+        name: email
+        description: 'valid email address The email address of the admin admin. Must be unique.'
+        required: true
+        example: osinski.gina@example.com
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      birthdate:
+        name: birthdate
+        description: 'optional The birthdate of the admin admin (YYYY-MM-DD format).'
+        required: false
+        example: et
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      gender_type:
+        name: gender_type
+        description: 'optional The gender type of the admin admin. Allowed values: male, female, other.'
+        required: false
+        example: ea
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      is_active:
+        name: is_active
+        description: 'optional Whether the admin admin is active or not (true/false).'
+        required: false
+        example: false
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      password:
+        name: password
+        description: 'The password for the admin admin. Minimum length: 8 characters.'
+        required: true
+        example: ',):9_jK6Bb*D>wN]'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      image:
+        name: image
+        description: 'optional The profile image of the admin admin (jpg, jpeg, png, gif formats only).'
+        required: false
+        example: null
+        type: file
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      role_ids:
+        name: role_ids
+        description: 'Array of role IDs assigned to the admin admin.'
+        required: true
+        example:
+          - sed
+        type: 'string[]'
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      full_name: dolores
+      phone: a
+      email: osinski.gina@example.com
+      birthdate: et
+      gender_type: ea
+      is_active: false
+      password: ',):9_jK6Bb*D>wN]'
+      role_ids:
+        - sed
+    fileParameters:
+      image: null
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+              "status": true,
+              "message": "Admin Created successfully",
+              "data": {
+                  "name": "John Doe",
+                  "email": "johndoe@example.com",
+                  "image':17777868.jpg,
+                  "created_at": "2024-06-24T12:34:56Z",
+                  "updated_at": "2024-06-24T12:34:56Z"
+              }
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+              "error": "Unauthenticated."
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 422
+        content: |-
+          {
+              "errors": {
+
+                      "invalid data format."
+
+              }
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 500
+        content: |-
+          {
+              "error": "Something went wrong."
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/updateAdmin/{id}'
+    metadata:
+      groupName: 'admin Management'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: "Updated the authenticated admin's profile."
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: multipart/form-data
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the updateAdmin.'
+        required: true
+        example: ab
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanUrlParameters:
+      id: ab
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      full_name:
+        name: full_name
+        description: 'The full name of the admin user.'
+        required: true
+        example: optio
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      phone:
+        name: phone
+        description: 'The phone number of the admin user.'
+        required: true
+        example: dolor
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      gender_type:
+        name: gender_type
+        description: 'optional The gender type of the admin user. Allowed values: male, female, other.'
+        required: false
+        example: accusantium
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      birthdate:
+        name: birthdate
+        description: 'optional The birthdate of the admin user (YYYY-MM-DD format).'
+        required: false
+        example: sit
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      email:
+        name: email
+        description: 'valid email address The email address of the admin user. Must be unique.Non editable.'
+        required: true
+        example: lon.sanford@example.net
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      is_active:
+        name: is_active
+        description: 'optional Whether the admin user is active or not (true/false).'
+        required: false
+        example: true
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      password:
+        name: password
+        description: 'The password for the admin user. Minimum length: 8 characters.'
+        required: true
+        example: 1B7W$_f1pFltI8b2^S9e
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      role_ids:
+        name: role_ids
+        description: 'Array of role IDs assigned to the admin user.'
+        required: true
+        example:
+          - qui
+        type: 'string[]'
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      image:
+        name: image
+        description: 'optional The profile image of the admin user (jpg, jpeg, png, gif formats only).'
+        required: false
+        example: null
+        type: file
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      full_name: optio
+      phone: dolor
+      gender_type: accusantium
+      birthdate: sit
+      email: lon.sanford@example.net
+      is_active: true
+      password: 1B7W$_f1pFltI8b2^S9e
+      role_ids:
+        - qui
+    fileParameters:
+      image: null
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+              "status": true,
+              "message": "Admin updated successfully",
+              "data": {
+                  "name": "John Doe",
+                  "email": "johndoe@example.com",
+                  "image':17777868.jpg,
+                 "full_name": "developer",
+                 "phone": "9998553040",
+                "birthdate": null,
+                "gender_type": 9,
+                "city_type": null,
+                "country_type": null,
+                 "created_at": "2024-06-24T12:34:56Z",
+                 "updated_at": "2024-06-24T12:34:56Z"
+              }
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+              "error": "Unauthenticated."
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 422
+        content: |-
+          {
+              "errors": {
+
+                      "invalid data format."
+
+              }
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 500
+        content: |-
+          {
+              "error": "Something went wrong."
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/updateadminimage/{id}'
+    metadata:
+      groupName: 'admin Management'
+      groupDescription: 'This API endpoint updates the profile image of an admin identified by UUID.'
+      subgroup: ''
+      subgroupDescription: ''
+      title: "Update admin's profile image."
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: multipart/form-data
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the updateadminimage.'
+        required: true
+        example: corporis
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanUrlParameters:
+      id: corporis
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      image:
+        name: image
+        description: 'The image file to upload (JPEG, JPG, PNG only, max 2MB).'
+        required: true
+        example: null
+        type: file
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters: []
+    fileParameters:
+      image: null
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+              "message": "Image updated successfully"
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 400
+        content: |-
+          {
+              "error": "Invalid image format or size"
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+              "error": "Unauthorized"
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 404
+        content: |-
+          {
+              "error": "Admin not found"
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 500
+        content: |-
+          {
+              "error": "Something went wrong"
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/changepassword
+    metadata:
+      groupName: 'admin Management'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Change auth  user password.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      old_password:
+        name: old_password
+        description: ''
+        required: true
+        example: enim
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      password:
+        name: password
+        description: 'Must be at least 8 characters.'
+        required: true
+        example: 'g>$:JFFJ%'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      full_name:
+        name: full_name
+        description: 'The full name of the admin user.'
+        required: true
+        example: itaque
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      phone:
+        name: phone
+        description: 'The phone number of the admin user.'
+        required: true
+        example: qui
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      old_password: enim
+      password: 'g>$:JFFJ%'
+      full_name: itaque
+      phone: qui
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/logout
+    metadata:
+      groupName: 'admin Management'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Log out the authenticated user.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+           "success": true,
+           "message": "Logged out successfully.",
+           "user": {
+               "name": "developer",
+               "email": "devsoft7pm@gmail.com",
+              "full_name": "developer",
+              "phone": "9998553040",
+              "birthdate": null,
+             "gender_type": 9,
+             "city_type": null,
+             "country_type": null,
+             "address": null,
+             "is_active": 1,
+             "uuid": "c4dcce75-5b80-4ee7-af5e-6d7ce455ee5f",
+             "profile_image": "http://127.0.0.1:8000/storage/images/profile/thumbnail_91750701202411001266828c3c31d3f.jpg"
+           }
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+              "success": false,
+              "message": "Failed to authenticate."
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 500
+        content: |-
+          {
+              "success": false,
+              "message": "Internal Server Error"
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/deleteadmin/{id}'
+    metadata:
+      groupName: 'admin Management'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Delete the admin profile.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the user to delete.'
+        required: true
+        example: et
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanUrlParameters:
+      id: et
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+              "status": true,
+              "message": "Admin deleted successfully",
+           "user": {
+               "name": "developer",
+               "email": "devsoft7pm@gmail.com",
+              "full_name": "developer",
+              "phone": "9998553040",
+              "birthdate": null,
+             "gender_type": 9,
+             "city_type": null,
+             "country_type": null,
+             "address": null,
+             "is_active": 1,
+             "uuid": "c4dcce75-5b80-4ee7-af5e-6d7ce455ee5f",
+             "profile_image": "http://127.0.0.1:8000/storage/images/profile/thumbnail_91750701202411001266828c3c31d3f.jpg"
+           }
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+              "error": "Unauthenticated."
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 500
+        content: |-
+          {
+              "error": "Something went wrong."
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []

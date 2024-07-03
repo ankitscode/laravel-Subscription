@@ -1,0 +1,90 @@
+name: Subscriptions
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/getsubscription
+    metadata:
+      groupName: Subscriptions
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Retrieve the subscriptions for the authenticated user.'
+      description: 'This endpoint retrieves all subscriptions associated with the authenticated user.'
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+              "message": "Successfully retrieved the data of subscriptions",
+              "subscriptions": [
+                  {
+                      "id": 4,
+                      "name": "Basic plan",
+                      "duration": "1 months",
+                      "amount": "299",
+                      "uuid": null,
+                      "remember_token": null,
+                      "is_active": 1
+                  },
+                  {
+                      "id": 5,
+                      "name": "Half yearly plan",
+                      "duration": "6 Months",
+                      "amount": "1499",
+                      "uuid": null,
+                      "remember_token": null,
+                      "is_active": 1
+                  },
+                  {
+                      "id": 7,
+                      "name": "Yearly Plan",
+                      "duration": "1 Year",
+                      "amount": "2999",
+                      "uuid": null,
+                      "remember_token": null,
+                      "is_active": 1
+                  }
+              ]
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+              "error": "Unauthenticated."
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 500
+        content: |-
+          {
+              "success": false,
+              "message": "Internal Server Error"
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []

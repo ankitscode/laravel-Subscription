@@ -58,7 +58,7 @@ Route::group(
              Route::get('/subscriptionview/{id}',[SubscriptionController::class,'view'])->name('admin.subscriptionView');
              Route::get('/subscriptionedit/{id}',[SubscriptionController::class,'edit'])->name('admin.subscriptionEdit');
              Route::post('/subscriptionupdate/{id}',[SubscriptionController::class,'update'])->name('admin.subscriptionUpdate');
-             Route::get('/subscriptiondestroy/{id}',[SubscriptionController::class,'destroy'])->name('admin.subscriptionDestroy');
+             Route::post('/subscriptiondestroy/{id}',[SubscriptionController::class,'destroy'])->name('admin.subscriptionDestroy');
 
             #admin user route
                 Route::get('/', [ManageUserController::class, 'usersList'])->name('admin.usersList');

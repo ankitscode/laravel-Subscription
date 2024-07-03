@@ -1,0 +1,1057 @@
+openapi: 3.0.3
+info:
+  title: 'Admin Panel'
+  description: 'These are rest api which use BearerToken for authentication.'
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost'
+paths:
+  /api/getcategories:
+    get:
+      summary: 'Retrieve all categories.'
+      operationId: retrieveAllCategories
+      description: 'This endpoint retrieves all categories available in the system.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Successfully retrieved the data of categories'
+                  subscriptions:
+                    -
+                      id: 10
+                      name: Dairy
+                      parent_name: null
+                      media_id: null
+                      is_active: 1
+                      is_menu: 1
+                    -
+                      id: 11
+                      name: Vegetables
+                      parent_name: null
+                      media_id: null
+                      is_active: 1
+                      is_menu: 1
+                    -
+                      id: 12
+                      name: Meat
+                      parent_name: null
+                      media_id: null
+                      is_active: 1
+                      is_menu: 1
+                    -
+                      id: 13
+                      name: Groceries
+                      parent_name: null
+                      media_id: null
+                      is_active: 1
+                      is_menu: 1
+                properties:
+                  message:
+                    type: string
+                    example: 'Successfully retrieved the data of categories'
+                  subscriptions:
+                    type: array
+                    example:
+                      -
+                        id: 10
+                        name: Dairy
+                        parent_name: null
+                        media_id: null
+                        is_active: 1
+                        is_menu: 1
+                      -
+                        id: 11
+                        name: Vegetables
+                        parent_name: null
+                        media_id: null
+                        is_active: 1
+                        is_menu: 1
+                      -
+                        id: 12
+                        name: Meat
+                        parent_name: null
+                        media_id: null
+                        is_active: 1
+                        is_menu: 1
+                      -
+                        id: 13
+                        name: Groceries
+                        parent_name: null
+                        media_id: null
+                        is_active: 1
+                        is_menu: 1
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 10
+                        name:
+                          type: string
+                          example: Dairy
+                        parent_name:
+                          type: string
+                          example: null
+                        media_id:
+                          type: string
+                          example: null
+                        is_active:
+                          type: integer
+                          example: 1
+                        is_menu:
+                          type: integer
+                          example: 1
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: Unauthenticated.
+                properties:
+                  error:
+                    type: string
+                    example: Unauthenticated.
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: false
+                  message: 'Internal Server Error'
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Internal Server Error'
+      tags:
+        - Categories
+  /api/adminlogin:
+    post:
+      summary: 'Log in a Admin.'
+      operationId: logInAAdmin
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  token: eyJhbGciOiAiSFMyNTYiLCJraWQiOiAiYWMwMDZmMDYtMGM0ZC00MTQ5LWE5MTYtYjEwYzQ2N2YzZmMwIn0.eyJqdGkiOiAibG9naW4tY29
+                  admin:
+                    name: developer
+                    email: example7pm@gmail.com
+                    full_name: developer
+                    phone: '9998553040'
+                    birthdate: null
+                    gender_type: 9
+                    city_type: null
+                    country_type: null
+                    address: null
+                    is_active: 1
+                    uuid: c4dcce75-5b80-4ee7-af5e-6d7ce455ee5f
+                    profile_image: ''
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  token:
+                    type: string
+                    example: eyJhbGciOiAiSFMyNTYiLCJraWQiOiAiYWMwMDZmMDYtMGM0ZC00MTQ5LWE5MTYtYjEwYzQ2N2YzZmMwIn0.eyJqdGkiOiAibG9naW4tY29
+                  admin:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        example: developer
+                      email:
+                        type: string
+                        example: example7pm@gmail.com
+                      full_name:
+                        type: string
+                        example: developer
+                      phone:
+                        type: string
+                        example: '9998553040'
+                      birthdate:
+                        type: string
+                        example: null
+                      gender_type:
+                        type: integer
+                        example: 9
+                      city_type:
+                        type: string
+                        example: null
+                      country_type:
+                        type: string
+                        example: null
+                      address:
+                        type: string
+                        example: null
+                      is_active:
+                        type: integer
+                        example: 1
+                      uuid:
+                        type: string
+                        example: c4dcce75-5b80-4ee7-af5e-6d7ce455ee5f
+                      profile_image:
+                        type: string
+                        example: ''
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: false
+                  message: 'Failed to authenticate.'
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Failed to authenticate.'
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: false
+                  message: 'Internal Server Error'
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Internal Server Error'
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: 'valid email address The email of the admin.'
+                  example: bud25@example.net
+                password:
+                  type: string
+                  description: 'min:8 The password of the admin.'
+                  example: 'mqV&iU_^'
+              required:
+                - email
+                - password
+      security: []
+  '/api/order/{id}':
+    post:
+      summary: 'Store a new order.'
+      operationId: storeANewOrder
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n  \"status\": true,\n  \"message\": \"successfully created orderId\",\n \"data\": {\n      \"order_id\": \"20e0f8a1-dceb-4c0b-8733-ea66834669c3\",\n     \"subscription_id\": 18,\n      \"id\": 3\n  }"
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: Unauthenticated.
+                properties:
+                  error:
+                    type: string
+                    example: Unauthenticated.
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: false
+                  message: 'Internal Server Error'
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Internal Server Error'
+      tags:
+        - Orders
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  description: 'The ID of the subscription to associate with the order.'
+                  example: 10
+              required:
+                - id
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the order.'
+        example: quibusdam
+        required: true
+        schema:
+          type: string
+  /api/getsubscription:
+    get:
+      summary: 'Retrieve the subscriptions for the authenticated user.'
+      operationId: retrieveTheSubscriptionsForTheAuthenticatedUser
+      description: 'This endpoint retrieves all subscriptions associated with the authenticated user.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Successfully retrieved the data of subscriptions'
+                  subscriptions:
+                    -
+                      id: 4
+                      name: 'Basic plan'
+                      duration: '1 months'
+                      amount: '299'
+                      uuid: null
+                      remember_token: null
+                      is_active: 1
+                    -
+                      id: 5
+                      name: 'Half yearly plan'
+                      duration: '6 Months'
+                      amount: '1499'
+                      uuid: null
+                      remember_token: null
+                      is_active: 1
+                    -
+                      id: 7
+                      name: 'Yearly Plan'
+                      duration: '1 Year'
+                      amount: '2999'
+                      uuid: null
+                      remember_token: null
+                      is_active: 1
+                properties:
+                  message:
+                    type: string
+                    example: 'Successfully retrieved the data of subscriptions'
+                  subscriptions:
+                    type: array
+                    example:
+                      -
+                        id: 4
+                        name: 'Basic plan'
+                        duration: '1 months'
+                        amount: '299'
+                        uuid: null
+                        remember_token: null
+                        is_active: 1
+                      -
+                        id: 5
+                        name: 'Half yearly plan'
+                        duration: '6 Months'
+                        amount: '1499'
+                        uuid: null
+                        remember_token: null
+                        is_active: 1
+                      -
+                        id: 7
+                        name: 'Yearly Plan'
+                        duration: '1 Year'
+                        amount: '2999'
+                        uuid: null
+                        remember_token: null
+                        is_active: 1
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 4
+                        name:
+                          type: string
+                          example: 'Basic plan'
+                        duration:
+                          type: string
+                          example: '1 months'
+                        amount:
+                          type: string
+                          example: '299'
+                        uuid:
+                          type: string
+                          example: null
+                        remember_token:
+                          type: string
+                          example: null
+                        is_active:
+                          type: integer
+                          example: 1
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: Unauthenticated.
+                properties:
+                  error:
+                    type: string
+                    example: Unauthenticated.
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: false
+                  message: 'Internal Server Error'
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Internal Server Error'
+      tags:
+        - Subscriptions
+  /api/getadminprofile:
+    get:
+      summary: "Retrieve the authenticated admin's profile."
+      operationId: retrieveTheAuthenticatedAdminsProfile
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n    \"status\": true,\n    \"data\": {\n   \"name\": \"developer\",\n   \"email\": \"example7pm@gmail.com\",\n   \"full_name\": \"developer\",\n   \"phone\": \"9998553040\",\n   \"birthdate\": null,\n  \"gender_type\": 9,\n   \"city_type\": null,\n   \"country_type\": null,\n   \"address\": null,\n   \"is_active\": 1,\n   \"uuid\": \"c4dcce75-5b80-4ee7-af5e-6d7ce455ee5f\",\n  \"profile_image\": \"\"\n     }"
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'admin Management'
+  /api/storeadmin:
+    post:
+      summary: "Created the authenticated admin's profile."
+      operationId: createdTheAuthenticatedAdminsProfile
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n    \"status\": true,\n    \"message\": \"Admin Created successfully\",\n    \"data\": {\n        \"name\": \"John Doe\",\n        \"email\": \"johndoe@example.com\",\n        \"image':17777868.jpg,\n        \"created_at\": \"2024-06-24T12:34:56Z\",\n        \"updated_at\": \"2024-06-24T12:34:56Z\"\n    }\n}"
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: Unauthenticated.
+                properties:
+                  error:
+                    type: string
+                    example: Unauthenticated.
+        422:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n    \"errors\": {\n\n            \"invalid data format.\"\n\n    }\n}"
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Something went wrong.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Something went wrong.'
+      tags:
+        - 'admin Management'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                full_name:
+                  type: string
+                  description: 'The full name of the admin admin.'
+                  example: dolores
+                phone:
+                  type: string
+                  description: 'The phone number of the admin admin.'
+                  example: a
+                email:
+                  type: string
+                  description: 'valid email address The email address of the admin admin. Must be unique.'
+                  example: osinski.gina@example.com
+                birthdate:
+                  type: string
+                  description: 'optional The birthdate of the admin admin (YYYY-MM-DD format).'
+                  example: et
+                gender_type:
+                  type: string
+                  description: 'optional The gender type of the admin admin. Allowed values: male, female, other.'
+                  example: ea
+                is_active:
+                  type: boolean
+                  description: 'optional Whether the admin admin is active or not (true/false).'
+                  example: false
+                password:
+                  type: string
+                  description: 'The password for the admin admin. Minimum length: 8 characters.'
+                  example: ',):9_jK6Bb*D>wN]'
+                image:
+                  type: string
+                  format: binary
+                  description: 'optional The profile image of the admin admin (jpg, jpeg, png, gif formats only).'
+                role_ids:
+                  type: array
+                  description: 'Array of role IDs assigned to the admin admin.'
+                  example:
+                    - sed
+                  items:
+                    type: string
+              required:
+                - full_name
+                - phone
+                - email
+                - password
+                - role_ids
+  '/api/updateAdmin/{id}':
+    post:
+      summary: "Updated the authenticated admin's profile."
+      operationId: updatedTheAuthenticatedAdminsProfile
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n    \"status\": true,\n    \"message\": \"Admin updated successfully\",\n    \"data\": {\n        \"name\": \"John Doe\",\n        \"email\": \"johndoe@example.com\",\n        \"image':17777868.jpg,\n       \"full_name\": \"developer\",\n       \"phone\": \"9998553040\",\n      \"birthdate\": null,\n      \"gender_type\": 9,\n      \"city_type\": null,\n      \"country_type\": null,\n       \"created_at\": \"2024-06-24T12:34:56Z\",\n       \"updated_at\": \"2024-06-24T12:34:56Z\"\n    }\n}"
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: Unauthenticated.
+                properties:
+                  error:
+                    type: string
+                    example: Unauthenticated.
+        422:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n    \"errors\": {\n\n            \"invalid data format.\"\n\n    }\n}"
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Something went wrong.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Something went wrong.'
+      tags:
+        - 'admin Management'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                full_name:
+                  type: string
+                  description: 'The full name of the admin user.'
+                  example: optio
+                phone:
+                  type: string
+                  description: 'The phone number of the admin user.'
+                  example: dolor
+                gender_type:
+                  type: string
+                  description: 'optional The gender type of the admin user. Allowed values: male, female, other.'
+                  example: accusantium
+                birthdate:
+                  type: string
+                  description: 'optional The birthdate of the admin user (YYYY-MM-DD format).'
+                  example: sit
+                email:
+                  type: string
+                  description: 'valid email address The email address of the admin user. Must be unique.Non editable.'
+                  example: lon.sanford@example.net
+                is_active:
+                  type: boolean
+                  description: 'optional Whether the admin user is active or not (true/false).'
+                  example: true
+                password:
+                  type: string
+                  description: 'The password for the admin user. Minimum length: 8 characters.'
+                  example: 1B7W$_f1pFltI8b2^S9e
+                role_ids:
+                  type: array
+                  description: 'Array of role IDs assigned to the admin user.'
+                  example:
+                    - qui
+                  items:
+                    type: string
+                image:
+                  type: string
+                  format: binary
+                  description: 'optional The profile image of the admin user (jpg, jpeg, png, gif formats only).'
+              required:
+                - full_name
+                - phone
+                - email
+                - password
+                - role_ids
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the updateAdmin.'
+        example: ab
+        required: true
+        schema:
+          type: string
+  '/api/updateadminimage/{id}':
+    post:
+      summary: "Update admin's profile image."
+      operationId: updateAdminsProfileImage
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Image updated successfully'
+                properties:
+                  message:
+                    type: string
+                    example: 'Image updated successfully'
+        400:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Invalid image format or size'
+                properties:
+                  error:
+                    type: string
+                    example: 'Invalid image format or size'
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: Unauthorized
+                properties:
+                  error:
+                    type: string
+                    example: Unauthorized
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Admin not found'
+                properties:
+                  error:
+                    type: string
+                    example: 'Admin not found'
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Something went wrong'
+                properties:
+                  error:
+                    type: string
+                    example: 'Something went wrong'
+      tags:
+        - 'admin Management'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                image:
+                  type: string
+                  format: binary
+                  description: 'The image file to upload (JPEG, JPG, PNG only, max 2MB).'
+              required:
+                - image
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the updateadminimage.'
+        example: corporis
+        required: true
+        schema:
+          type: string
+  /api/changepassword:
+    post:
+      summary: 'Change auth  user password.'
+      operationId: changeAuthUserPassword
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'admin Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                old_password:
+                  type: string
+                  description: ''
+                  example: enim
+                password:
+                  type: string
+                  description: 'Must be at least 8 characters.'
+                  example: 'g>$:JFFJ%'
+                full_name:
+                  type: string
+                  description: 'The full name of the admin user.'
+                  example: itaque
+                phone:
+                  type: string
+                  description: 'The phone number of the admin user.'
+                  example: qui
+              required:
+                - old_password
+                - password
+                - full_name
+                - phone
+  /api/logout:
+    post:
+      summary: 'Log out the authenticated user.'
+      operationId: logOutTheAuthenticatedUser
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  message: 'Logged out successfully.'
+                  user:
+                    name: developer
+                    email: devsoft7pm@gmail.com
+                    full_name: developer
+                    phone: '9998553040'
+                    birthdate: null
+                    gender_type: 9
+                    city_type: null
+                    country_type: null
+                    address: null
+                    is_active: 1
+                    uuid: c4dcce75-5b80-4ee7-af5e-6d7ce455ee5f
+                    profile_image: 'http://127.0.0.1:8000/storage/images/profile/thumbnail_91750701202411001266828c3c31d3f.jpg'
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Logged out successfully.'
+                  user:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        example: developer
+                      email:
+                        type: string
+                        example: devsoft7pm@gmail.com
+                      full_name:
+                        type: string
+                        example: developer
+                      phone:
+                        type: string
+                        example: '9998553040'
+                      birthdate:
+                        type: string
+                        example: null
+                      gender_type:
+                        type: integer
+                        example: 9
+                      city_type:
+                        type: string
+                        example: null
+                      country_type:
+                        type: string
+                        example: null
+                      address:
+                        type: string
+                        example: null
+                      is_active:
+                        type: integer
+                        example: 1
+                      uuid:
+                        type: string
+                        example: c4dcce75-5b80-4ee7-af5e-6d7ce455ee5f
+                      profile_image:
+                        type: string
+                        example: 'http://127.0.0.1:8000/storage/images/profile/thumbnail_91750701202411001266828c3c31d3f.jpg'
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: false
+                  message: 'Failed to authenticate.'
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Failed to authenticate.'
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: false
+                  message: 'Internal Server Error'
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Internal Server Error'
+      tags:
+        - 'admin Management'
+  '/api/deleteadmin/{id}':
+    post:
+      summary: 'Delete the admin profile.'
+      operationId: deleteTheAdminProfile
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: true
+                  message: 'Admin deleted successfully'
+                  user:
+                    name: developer
+                    email: devsoft7pm@gmail.com
+                    full_name: developer
+                    phone: '9998553040'
+                    birthdate: null
+                    gender_type: 9
+                    city_type: null
+                    country_type: null
+                    address: null
+                    is_active: 1
+                    uuid: c4dcce75-5b80-4ee7-af5e-6d7ce455ee5f
+                    profile_image: 'http://127.0.0.1:8000/storage/images/profile/thumbnail_91750701202411001266828c3c31d3f.jpg'
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Admin deleted successfully'
+                  user:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        example: developer
+                      email:
+                        type: string
+                        example: devsoft7pm@gmail.com
+                      full_name:
+                        type: string
+                        example: developer
+                      phone:
+                        type: string
+                        example: '9998553040'
+                      birthdate:
+                        type: string
+                        example: null
+                      gender_type:
+                        type: integer
+                        example: 9
+                      city_type:
+                        type: string
+                        example: null
+                      country_type:
+                        type: string
+                        example: null
+                      address:
+                        type: string
+                        example: null
+                      is_active:
+                        type: integer
+                        example: 1
+                      uuid:
+                        type: string
+                        example: c4dcce75-5b80-4ee7-af5e-6d7ce455ee5f
+                      profile_image:
+                        type: string
+                        example: 'http://127.0.0.1:8000/storage/images/profile/thumbnail_91750701202411001266828c3c31d3f.jpg'
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: Unauthenticated.
+                properties:
+                  error:
+                    type: string
+                    example: Unauthenticated.
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Something went wrong.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Something went wrong.'
+      tags:
+        - 'admin Management'
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the user to delete.'
+        example: et
+        required: true
+        schema:
+          type: string
+tags:
+  -
+    name: Categories
+    description: ''
+  -
+    name: Endpoints
+    description: ''
+  -
+    name: Orders
+    description: ''
+  -
+    name: Subscriptions
+    description: ''
+  -
+    name: 'admin Management'
+    description: 'This API endpoint updates the profile image of an admin identified by UUID.'

@@ -1,0 +1,711 @@
+{
+    "variable": [
+        {
+            "id": "baseUrl",
+            "key": "baseUrl",
+            "type": "string",
+            "name": "string",
+            "value": "http:\/\/localhost"
+        }
+    ],
+    "info": {
+        "name": "Admin Panel",
+        "_postman_id": "c85a9f66-fbc9-40c2-87f4-e8d2413ae5a7",
+        "description": "These are rest api which use BearerToken for authentication.",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "Categories",
+            "description": "",
+            "item": [
+                {
+                    "name": "Retrieve all categories.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/getcategories",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/getcategories"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "This endpoint retrieves all categories available in the system."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"message\": \"Successfully retrieved the data of categories\",\n    \"subscriptions\": [\n        {\n            \"id\": 10,\n            \"name\": \"Dairy\",\n            \"parent_name\": null,\n            \"media_id\": null,\n            \"is_active\": 1,\n            \"is_menu\": 1\n        },\n        {\n            \"id\": 11,\n            \"name\": \"Vegetables\",\n            \"parent_name\": null,\n            \"media_id\": null,\n            \"is_active\": 1,\n            \"is_menu\": 1\n        },\n        {\n            \"id\": 12,\n            \"name\": \"Meat\",\n            \"parent_name\": null,\n            \"media_id\": null,\n            \"is_active\": 1,\n            \"is_menu\": 1\n        },\n        {\n            \"id\": 13,\n            \"name\": \"Groceries\",\n            \"parent_name\": null,\n            \"media_id\": null,\n            \"is_active\": 1,\n            \"is_menu\": 1\n        }\n    ]\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"error\": \"Unauthenticated.\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 500,
+                            "body": "{\n    \"success\": false,\n    \"message\": \"Internal Server Error\"\n}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Endpoints",
+            "description": "",
+            "item": [
+                {
+                    "name": "admin",
+                    "description": "",
+                    "item": [
+                        {
+                            "name": "Log in a Admin.",
+                            "request": {
+                                "url": {
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/adminlogin",
+                                    "query": [],
+                                    "raw": "{{baseUrl}}\/api\/adminlogin"
+                                },
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\"email\":\"bud25@example.net\",\"password\":\"mqV&iU_^\"}"
+                                },
+                                "description": "",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "response": [
+                                {
+                                    "header": [],
+                                    "code": 200,
+                                    "body": "{\n    \"success\": true,\n    \"token\": \"eyJhbGciOiAiSFMyNTYiLCJraWQiOiAiYWMwMDZmMDYtMGM0ZC00MTQ5LWE5MTYtYjEwYzQ2N2YzZmMwIn0.eyJqdGkiOiAibG9naW4tY29\",\n    \"admin\": {\n   \"name\": \"developer\",\n   \"email\": \"example7pm@gmail.com\",\n   \"full_name\": \"developer\",\n   \"phone\": \"9998553040\",\n   \"birthdate\": null,\n  \"gender_type\": 9,\n   \"city_type\": null,\n   \"country_type\": null,\n   \"address\": null,\n   \"is_active\": 1,\n   \"uuid\": \"c4dcce75-5b80-4ee7-af5e-6d7ce455ee5f\",\n  \"profile_image\": \"\"\n     }\n}",
+                                    "name": ""
+                                },
+                                {
+                                    "header": [],
+                                    "code": 401,
+                                    "body": "{\n    \"success\": false,\n    \"message\": \"Failed to authenticate.\"\n}",
+                                    "name": ""
+                                },
+                                {
+                                    "header": [],
+                                    "code": 500,
+                                    "body": "{\n    \"success\": false,\n    \"message\": \"Internal Server Error\"\n}",
+                                    "name": ""
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Orders",
+            "description": "",
+            "item": [
+                {
+                    "name": "Store a new order.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/order\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/order\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "quibusdam",
+                                    "description": "The ID of the order."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"id\":10}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"status\": true,\n  \"message\": \"successfully created orderId\",\n \"data\": {\n      \"order_id\": \"20e0f8a1-dceb-4c0b-8733-ea66834669c3\",\n     \"subscription_id\": 18,\n      \"id\": 3\n  }",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"error\": \"Unauthenticated.\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 500,
+                            "body": "{\n    \"success\": false,\n    \"message\": \"Internal Server Error\"\n}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Subscriptions",
+            "description": "",
+            "item": [
+                {
+                    "name": "Retrieve the subscriptions for the authenticated user.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/getsubscription",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/getsubscription"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "This endpoint retrieves all subscriptions associated with the authenticated user."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"message\": \"Successfully retrieved the data of subscriptions\",\n    \"subscriptions\": [\n        {\n            \"id\": 4,\n            \"name\": \"Basic plan\",\n            \"duration\": \"1 months\",\n            \"amount\": \"299\",\n            \"uuid\": null,\n            \"remember_token\": null,\n            \"is_active\": 1\n        },\n        {\n            \"id\": 5,\n            \"name\": \"Half yearly plan\",\n            \"duration\": \"6 Months\",\n            \"amount\": \"1499\",\n            \"uuid\": null,\n            \"remember_token\": null,\n            \"is_active\": 1\n        },\n        {\n            \"id\": 7,\n            \"name\": \"Yearly Plan\",\n            \"duration\": \"1 Year\",\n            \"amount\": \"2999\",\n            \"uuid\": null,\n            \"remember_token\": null,\n            \"is_active\": 1\n        }\n    ]\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"error\": \"Unauthenticated.\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 500,
+                            "body": "{\n    \"success\": false,\n    \"message\": \"Internal Server Error\"\n}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "admin Management",
+            "description": "This API endpoint updates the profile image of an admin identified by UUID.",
+            "item": [
+                {
+                    "name": "Retrieve the authenticated admin's profile.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/getadminprofile",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/getadminprofile"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"status\": true,\n    \"data\": {\n   \"name\": \"developer\",\n   \"email\": \"example7pm@gmail.com\",\n   \"full_name\": \"developer\",\n   \"phone\": \"9998553040\",\n   \"birthdate\": null,\n  \"gender_type\": 9,\n   \"city_type\": null,\n   \"country_type\": null,\n   \"address\": null,\n   \"is_active\": 1,\n   \"uuid\": \"c4dcce75-5b80-4ee7-af5e-6d7ce455ee5f\",\n  \"profile_image\": \"\"\n     }",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"message\": \"Unauthenticated.\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Created the authenticated admin's profile.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/storeadmin",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/storeadmin"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "multipart\/form-data"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "full_name",
+                                    "value": "dolores",
+                                    "type": "text",
+                                    "description": "The full name of the admin admin."
+                                },
+                                {
+                                    "key": "phone",
+                                    "value": "a",
+                                    "type": "text",
+                                    "description": "The phone number of the admin admin."
+                                },
+                                {
+                                    "key": "email",
+                                    "value": "osinski.gina@example.com",
+                                    "type": "text",
+                                    "description": "valid email address The email address of the admin admin. Must be unique."
+                                },
+                                {
+                                    "key": "birthdate",
+                                    "value": "et",
+                                    "type": "text",
+                                    "description": "optional The birthdate of the admin admin (YYYY-MM-DD format)."
+                                },
+                                {
+                                    "key": "gender_type",
+                                    "value": "ea",
+                                    "type": "text",
+                                    "description": "optional The gender type of the admin admin. Allowed values: male, female, other."
+                                },
+                                {
+                                    "key": "is_active",
+                                    "value": false,
+                                    "type": "text",
+                                    "description": "optional Whether the admin admin is active or not (true\/false)."
+                                },
+                                {
+                                    "key": "password",
+                                    "value": ",):9_jK6Bb*D>wN]",
+                                    "type": "text",
+                                    "description": "The password for the admin admin. Minimum length: 8 characters."
+                                },
+                                {
+                                    "key": "role_ids[0]",
+                                    "value": "sed",
+                                    "type": "text",
+                                    "description": ""
+                                },
+                                {
+                                    "key": "image",
+                                    "src": [],
+                                    "type": "file"
+                                }
+                            ]
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"status\": true,\n    \"message\": \"Admin Created successfully\",\n    \"data\": {\n        \"name\": \"John Doe\",\n        \"email\": \"johndoe@example.com\",\n        \"image':17777868.jpg,\n        \"created_at\": \"2024-06-24T12:34:56Z\",\n        \"updated_at\": \"2024-06-24T12:34:56Z\"\n    }\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"error\": \"Unauthenticated.\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n    \"errors\": {\n\n            \"invalid data format.\"\n\n    }\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 500,
+                            "body": "{\n    \"error\": \"Something went wrong.\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Updated the authenticated admin's profile.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/updateAdmin\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/updateAdmin\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "ab",
+                                    "description": "The ID of the updateAdmin."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "multipart\/form-data"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "full_name",
+                                    "value": "optio",
+                                    "type": "text",
+                                    "description": "The full name of the admin user."
+                                },
+                                {
+                                    "key": "phone",
+                                    "value": "dolor",
+                                    "type": "text",
+                                    "description": "The phone number of the admin user."
+                                },
+                                {
+                                    "key": "gender_type",
+                                    "value": "accusantium",
+                                    "type": "text",
+                                    "description": "optional The gender type of the admin user. Allowed values: male, female, other."
+                                },
+                                {
+                                    "key": "birthdate",
+                                    "value": "sit",
+                                    "type": "text",
+                                    "description": "optional The birthdate of the admin user (YYYY-MM-DD format)."
+                                },
+                                {
+                                    "key": "email",
+                                    "value": "lon.sanford@example.net",
+                                    "type": "text",
+                                    "description": "valid email address The email address of the admin user. Must be unique.Non editable."
+                                },
+                                {
+                                    "key": "is_active",
+                                    "value": true,
+                                    "type": "text",
+                                    "description": "optional Whether the admin user is active or not (true\/false)."
+                                },
+                                {
+                                    "key": "password",
+                                    "value": "1B7W$_f1pFltI8b2^S9e",
+                                    "type": "text",
+                                    "description": "The password for the admin user. Minimum length: 8 characters."
+                                },
+                                {
+                                    "key": "role_ids[0]",
+                                    "value": "qui",
+                                    "type": "text",
+                                    "description": ""
+                                },
+                                {
+                                    "key": "image",
+                                    "src": [],
+                                    "type": "file"
+                                }
+                            ]
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"status\": true,\n    \"message\": \"Admin updated successfully\",\n    \"data\": {\n        \"name\": \"John Doe\",\n        \"email\": \"johndoe@example.com\",\n        \"image':17777868.jpg,\n       \"full_name\": \"developer\",\n       \"phone\": \"9998553040\",\n      \"birthdate\": null,\n      \"gender_type\": 9,\n      \"city_type\": null,\n      \"country_type\": null,\n       \"created_at\": \"2024-06-24T12:34:56Z\",\n       \"updated_at\": \"2024-06-24T12:34:56Z\"\n    }\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"error\": \"Unauthenticated.\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n    \"errors\": {\n\n            \"invalid data format.\"\n\n    }\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 500,
+                            "body": "{\n    \"error\": \"Something went wrong.\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update admin's profile image.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/updateadminimage\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/updateadminimage\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "corporis",
+                                    "description": "The ID of the updateadminimage."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "multipart\/form-data"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "image",
+                                    "src": [],
+                                    "type": "file"
+                                }
+                            ]
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"message\": \"Image updated successfully\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 400,
+                            "body": "{\n    \"error\": \"Invalid image format or size\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"error\": \"Unauthorized\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\n    \"error\": \"Admin not found\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 500,
+                            "body": "{\n    \"error\": \"Something went wrong\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Change auth  user password.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/changepassword",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/changepassword"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"old_password\":\"enim\",\"password\":\"g>$:JFFJ%\",\"full_name\":\"itaque\",\"phone\":\"qui\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Log out the authenticated user.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/logout",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/logout"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n \"success\": true,\n \"message\": \"Logged out successfully.\",\n \"user\": {\n     \"name\": \"developer\",\n     \"email\": \"devsoft7pm@gmail.com\",\n    \"full_name\": \"developer\",\n    \"phone\": \"9998553040\",\n    \"birthdate\": null,\n   \"gender_type\": 9,\n   \"city_type\": null,\n   \"country_type\": null,\n   \"address\": null,\n   \"is_active\": 1,\n   \"uuid\": \"c4dcce75-5b80-4ee7-af5e-6d7ce455ee5f\",\n   \"profile_image\": \"http:\/\/127.0.0.1:8000\/storage\/images\/profile\/thumbnail_91750701202411001266828c3c31d3f.jpg\"\n }\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"success\": false,\n    \"message\": \"Failed to authenticate.\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 500,
+                            "body": "{\n    \"success\": false,\n    \"message\": \"Internal Server Error\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Delete the admin profile.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/deleteadmin\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/deleteadmin\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "et",
+                                    "description": "The ID of the user to delete."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"status\": true,\n    \"message\": \"Admin deleted successfully\",\n \"user\": {\n     \"name\": \"developer\",\n     \"email\": \"devsoft7pm@gmail.com\",\n    \"full_name\": \"developer\",\n    \"phone\": \"9998553040\",\n    \"birthdate\": null,\n   \"gender_type\": 9,\n   \"city_type\": null,\n   \"country_type\": null,\n   \"address\": null,\n   \"is_active\": 1,\n   \"uuid\": \"c4dcce75-5b80-4ee7-af5e-6d7ce455ee5f\",\n   \"profile_image\": \"http:\/\/127.0.0.1:8000\/storage\/images\/profile\/thumbnail_91750701202411001266828c3c31d3f.jpg\"\n }\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"error\": \"Unauthenticated.\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 500,
+                            "body": "{\n    \"error\": \"Something went wrong.\"\n}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "noauth"
+    }
+}

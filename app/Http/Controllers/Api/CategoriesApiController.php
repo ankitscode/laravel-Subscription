@@ -29,6 +29,8 @@ class CategoriesApiController extends Controller
  * @group Categories
  * @authenticated
  * 
+ * BearerToken is needed for authentication
+ * 
  * @response 200 {
  *     "message": "Successfully retrieved the data of categories",
  *     "subscriptions": [

@@ -27,6 +27,7 @@ class SubscriptionApiController extends Controller
  *
  * @group Subscriptions
  * @authenticated
+ * BearerToken is needed for authentication
  * 
  * @response 200 {
  *     "message": "Successfully retrieved the data of subscriptions",

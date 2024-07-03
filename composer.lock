@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9c1f48d13b4558f92fb62fa4acdf11b9",
+    "content-hash": "66ed8a59401ade089ff1f541b7c1b52f",
     "packages": [
         {
             "name": "brick/math",
@@ -9477,16 +9477,16 @@
         },
         {
             "name": "knuckleswtf/scribe",
-            "version": "4.35.0",
+            "version": "4.37.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/knuckleswtf/scribe.git",
-                "reference": "dd6696676981139de814bb0eeda7d5e5891a5244"
+                "reference": "85ad49144a10a69c5dbaaf1627feae48e6f2ec17"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/knuckleswtf/scribe/zipball/dd6696676981139de814bb0eeda7d5e5891a5244",
-                "reference": "dd6696676981139de814bb0eeda7d5e5891a5244",
+                "url": "https://api.github.com/repos/knuckleswtf/scribe/zipball/85ad49144a10a69c5dbaaf1627feae48e6f2ec17",
+                "reference": "85ad49144a10a69c5dbaaf1627feae48e6f2ec17",
                 "shasum": ""
             },
             "require": {
@@ -9560,7 +9560,7 @@
             ],
             "support": {
                 "issues": "https://github.com/knuckleswtf/scribe/issues",
-                "source": "https://github.com/knuckleswtf/scribe/tree/4.35.0"
+                "source": "https://github.com/knuckleswtf/scribe/tree/4.37.0"
             },
             "funding": [
                 {
@@ -9568,7 +9568,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2024-03-26T20:58:51+00:00"
+            "time": "2024-06-17T20:34:33+00:00"
         },
         {
             "name": "laravel/breeze",
@@ -12599,26 +12599,25 @@
         },
         {
             "name": "symfony/var-exporter",
-            "version": "v6.4.7",
+            "version": "v7.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-exporter.git",
-                "reference": "825f9b00c37bbe1c1691cc1aff9b5451fc9b4405"
+                "reference": "b80a669a2264609f07f1667f891dbfca25eba44c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-exporter/zipball/825f9b00c37bbe1c1691cc1aff9b5451fc9b4405",
-                "reference": "825f9b00c37bbe1c1691cc1aff9b5451fc9b4405",
+                "url": "https://api.github.com/repos/symfony/var-exporter/zipball/b80a669a2264609f07f1667f891dbfca25eba44c",
+                "reference": "b80a669a2264609f07f1667f891dbfca25eba44c",
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.1",
-                "symfony/deprecation-contracts": "^2.5|^3"
+                "php": ">=8.2"
             },
             "require-dev": {
                 "symfony/property-access": "^6.4|^7.0",
                 "symfony/serializer": "^6.4|^7.0",
-                "symfony/var-dumper": "^5.4|^6.0|^7.0"
+                "symfony/var-dumper": "^6.4|^7.0"
             },
             "type": "library",
             "autoload": {
@@ -12656,7 +12655,7 @@
                 "serialize"
             ],
             "support": {
-                "source": "https://github.com/symfony/var-exporter/tree/v6.4.7"
+                "source": "https://github.com/symfony/var-exporter/tree/v7.1.2"
             },
             "funding": [
                 {
@@ -12672,7 +12671,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-04-18T09:22:46+00:00"
+            "time": "2024-06-28T08:00:31+00:00"
         },
         {
             "name": "symfony/yaml",

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\subscription;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
@@ -55,14 +56,16 @@ class SubscriptionController extends Controller
                'name'=>'required|string|max:30',
                'duration'=>'required',
                'amount'=>'required',
+            //    'is_active'=>'required',
             ]);
              
             $subscription= new Subscription;
             $subscription->name=$request->name;
             $subscription->duration=$request->duration;
             $subscription->amount=$request->amount;
+            // $subscription->is_active=$request->is_active;
             $subscription->save();
-            Session::flash('alert-success', __('message.image_updated_successfully'));
+            Session::flash('alert-success', __('message.Subscription_added_successfully'));
             return redirect()->route('admin.subscription');
         } catch (\Exception $e) {
             Log::error('####### SubscriptionController -> store() #######  ' . $e->getMessage());
@@ -97,7 +100,8 @@ class SubscriptionController extends Controller
         try {
             //code...
             $subscription=Subscription::find($id);
-            return view('admin.subscription.Edit_subscription',compact('subscription'));
+            return response()->json(['data' => $subscription]);
+            // return view('admin.subscription.Edit_subscription',compact('subscription'));
         } catch (\Exception $e) {
             Log::error('####### SubscriptionController -> edit() #######  ' . $e->getMessage());
             Session::flash('alert-error', __('message.something_went_wrong'));
@@ -138,11 +142,14 @@ class SubscriptionController extends Controller
     public function destroy(string $id)
     {
         if(!auth_permission_check('Delete Admin'))return redirect()->back();
+        
+        DB::beginTransaction();
         try {
-            $subscription=Subscription::find($id);
-            $subscription->delete();
-            // Session::flash('alert-success', __('subscription removed successfully'));
+            Subscription::where('id', $id)->delete();
+            DB::commit();
+            return response()->json(['status' => 'subscription deleted successfully']);
         } catch (\Exception $e) {
+            DB::rollBack();
             Log::error('####### SubscriptionController -> destroy() #######  ' . $e->getMessage());
             Session::flash('alert-error', __('message.something_went_wrong'));
             return redirect()->back();
