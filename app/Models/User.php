@@ -13,10 +13,11 @@ use OwenIt\Auditing\Contracts\Auditable;
 use App\Http\Controllers\CommenController;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Auth\Passwords\CanResetPassword;
 
 class User extends Authenticatable implements Auditable
 {
-    use HasApiTokens, HasFactory, Notifiable,\OwenIt\Auditing\Auditable,MyAutiting, HasRoles;
+    use HasApiTokens, HasFactory, CanResetPassword, Notifiable,\OwenIt\Auditing\Auditable,MyAutiting, HasRoles;
 
     /**
      * The attributes that are mass assignable.

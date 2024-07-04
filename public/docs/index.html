@@ -68,6 +68,12 @@
                                                     <li class="tocify-item level-2" data-unique="categories-GETapi-getcategories">
                                 <a href="#categories-GETapi-getcategories">Retrieve all categories.</a>
                             </li>
+                                                                                <li class="tocify-item level-2" data-unique="categories-POSTapi-updatecategories--id-">
+                                <a href="#categories-POSTapi-updatecategories--id-">Update a category by ID.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="categories-POSTapi-destroycategory--id-">
+                                <a href="#categories-POSTapi-destroycategory--id-">Destroy a category by ID.</a>
+                            </li>
                                                                         </ul>
                             </ul>
                     <ul id="tocify-header-endpoints" class="tocify-header">
@@ -102,6 +108,12 @@
                                     <ul id="tocify-subheader-subscriptions" class="tocify-subheader">
                                                     <li class="tocify-item level-2" data-unique="subscriptions-GETapi-getsubscription">
                                 <a href="#subscriptions-GETapi-getsubscription">Retrieve the subscriptions for the authenticated user.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="subscriptions-POSTapi-updatesubscription--id-">
+                                <a href="#subscriptions-POSTapi-updatesubscription--id-">Update a subscription.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="subscriptions-POSTapi-destroysubscription--id-">
+                                <a href="#subscriptions-POSTapi-destroysubscription--id-">Destroy a subscription.</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -142,7 +154,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: July 3, 2024</li>
+        <li>Last updated: July 4, 2024</li>
     </ul>
 </div>
 
@@ -319,6 +331,312 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
+                    <h2 id="categories-POSTapi-updatecategories--id-">Update a category by ID.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>This endpoint updates the name of a category identified by its ID.</p>
+
+<span id="example-requests-POSTapi-updatecategories--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/api/updatecategories/14" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"name\": \"non\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/updatecategories/14"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "name": "non"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-updatecategories--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;category updated successfully&quot;,
+    &quot;data&quot;: {
+        &quot;id&quot;: 10,
+        &quot;name&quot;: &quot;icecream&quot;,
+        &quot;parent_name&quot;: null,
+        &quot;media_id&quot;: null,
+        &quot;is_active&quot;: 1,
+        &quot;is_menu&quot;: 1
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (400):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;name&quot;: [
+            &quot;The name field is required.&quot;
+        ]
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (500):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;success&quot;: false,
+    &quot;message&quot;: &quot;Internal Server Error&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-updatecategories--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-updatecategories--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-updatecategories--id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-updatecategories--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-updatecategories--id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-updatecategories--id-" data-method="POST"
+      data-path="api/updatecategories/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-updatecategories--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/updatecategories/{id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-updatecategories--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-updatecategories--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="POSTapi-updatecategories--id-"
+               value="14"
+               data-component="url">
+    <br>
+<p>The ID of the category to update. Example: <code>14</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="name"                data-endpoint="POSTapi-updatecategories--id-"
+               value="non"
+               data-component="body">
+    <br>
+<p>The new name for the category. Example: <code>non</code></p>
+        </div>
+        </form>
+
+                    <h2 id="categories-POSTapi-destroycategory--id-">Destroy a category by ID.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>This endpoint deletes a category identified by its ID.</p>
+
+<span id="example-requests-POSTapi-destroycategory--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/api/destroycategory/7" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/destroycategory/7"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-destroycategory--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;status&quot;: &quot;Category deleted successfully&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (500):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;success&quot;: false,
+    &quot;message&quot;: &quot;Internal Server Error&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-destroycategory--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-destroycategory--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-destroycategory--id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-destroycategory--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-destroycategory--id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-destroycategory--id-" data-method="POST"
+      data-path="api/destroycategory/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-destroycategory--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/destroycategory/{id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-destroycategory--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-destroycategory--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="POSTapi-destroycategory--id-"
+               value="7"
+               data-component="url">
+    <br>
+<p>The ID of the category to delete. Example: <code>7</code></p>
+            </div>
+                    </form>
+
                 <h1 id="endpoints">Endpoints</h1>
 
     
@@ -341,8 +659,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"email\": \"bud25@example.net\",
-    \"password\": \"mqV&amp;iU_^\"
+    \"email\": \"bryana14@example.net\",
+    \"password\": \"veLt8n$\'ft\'G6\"
 }"
 </code></pre></div>
 
@@ -358,8 +676,8 @@ const headers = {
 };
 
 let body = {
-    "email": "bud25@example.net",
-    "password": "mqV&amp;iU_^"
+    "email": "bryana14@example.net",
+    "password": "veLt8n$'ft'G6"
 };
 
 fetch(url, {
@@ -475,10 +793,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="POSTapi-adminlogin"
-               value="bud25@example.net"
+               value="bryana14@example.net"
                data-component="body">
     <br>
-<p>valid email address The email of the admin. Example: <code>bud25@example.net</code></p>
+<p>valid email address The email of the admin. Example: <code>bryana14@example.net</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -486,10 +804,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="POSTapi-adminlogin"
-               value="mqV&iU_^"
+               value="veLt8n$'ft'G6"
                data-component="body">
     <br>
-<p>min:8 The password of the admin. Example: <code>mqV&amp;iU_^</code></p>
+<p>min:8 The password of the admin. Example: <code>veLt8n$'ft'G6</code></p>
         </div>
         </form>
 
@@ -511,18 +829,18 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/order/quibusdam" \
+    "http://localhost/api/order/molestias" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"id\": 10
+    \"id\": 9
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/order/quibusdam"
+    "http://localhost/api/order/molestias"
 );
 
 const headers = {
@@ -531,7 +849,7 @@ const headers = {
 };
 
 let body = {
-    "id": 10
+    "id": 9
 };
 
 fetch(url, {
@@ -636,10 +954,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="POSTapi-order--id-"
-               value="quibusdam"
+               value="molestias"
                data-component="url">
     <br>
-<p>The ID of the order. Example: <code>quibusdam</code></p>
+<p>The ID of the order. Example: <code>molestias</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -648,10 +966,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="POSTapi-order--id-"
-               value="10"
+               value="9"
                data-component="body">
     <br>
-<p>The ID of the subscription to associate with the order. Example: <code>10</code></p>
+<p>The ID of the subscription to associate with the order. Example: <code>9</code></p>
         </div>
         </form>
 
@@ -808,6 +1126,339 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
+                    <h2 id="subscriptions-POSTapi-updatesubscription--id-">Update a subscription.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>This endpoint updates an existing subscription based on the provided subscription ID.</p>
+
+<span id="example-requests-POSTapi-updatesubscription--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/api/updatesubscription/8" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"name\": \"\\\"halfed Yearly\\\"\",
+    \"duration\": \"\\\"30 days\\\"\",
+    \"amount\": \"\\\"1500\\\"\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/updatesubscription/8"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "name": "\"halfed Yearly\"",
+    "duration": "\"30 days\"",
+    "amount": "\"1500\""
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-updatesubscription--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;subscription updated successfully&quot;,
+    &quot;data&quot;: {
+        &quot;id&quot;: 17,
+        &quot;name&quot;: &quot;halfed Yearly&quot;,
+        &quot;duration&quot;: &quot;30 days&quot;,
+        &quot;amount&quot;: &quot;1500&quot;,
+        &quot;uuid&quot;: null,
+        &quot;remember_token&quot;: null,
+        &quot;is_active&quot;: 1
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (400):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;name&quot;: [
+            &quot;The name field is required.&quot;
+        ]
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (500):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;success&quot;: false,
+    &quot;message&quot;: &quot;Internal Server Error&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-updatesubscription--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-updatesubscription--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-updatesubscription--id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-updatesubscription--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-updatesubscription--id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-updatesubscription--id-" data-method="POST"
+      data-path="api/updatesubscription/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-updatesubscription--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/updatesubscription/{id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-updatesubscription--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-updatesubscription--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="POSTapi-updatesubscription--id-"
+               value="8"
+               data-component="url">
+    <br>
+<p>The ID of the subscription to update. Example: <code>8</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="name"                data-endpoint="POSTapi-updatesubscription--id-"
+               value=""halfed Yearly""
+               data-component="body">
+    <br>
+<p>The name of the subscription. Example: <code>"halfed Yearly"</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>duration</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="duration"                data-endpoint="POSTapi-updatesubscription--id-"
+               value=""30 days""
+               data-component="body">
+    <br>
+<p>The duration of the subscription. Example: <code>"30 days"</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>amount</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="amount"                data-endpoint="POSTapi-updatesubscription--id-"
+               value=""1500""
+               data-component="body">
+    <br>
+<p>The amount of the subscription. Example: <code>"1500"</code></p>
+        </div>
+        </form>
+
+                    <h2 id="subscriptions-POSTapi-destroysubscription--id-">Destroy a subscription.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>This endpoint deletes a subscription associated with the authenticated user.</p>
+
+<span id="example-requests-POSTapi-destroysubscription--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/api/destroysubscription/4" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/destroysubscription/4"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-destroysubscription--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;status&quot;: &quot;Subscription deleted successfully&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (500):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;success&quot;: false,
+    &quot;message&quot;: &quot;Internal Server Error&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-destroysubscription--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-destroysubscription--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-destroysubscription--id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-destroysubscription--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-destroysubscription--id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-destroysubscription--id-" data-method="POST"
+      data-path="api/destroysubscription/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-destroysubscription--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/destroysubscription/{id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-destroysubscription--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-destroysubscription--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="POSTapi-destroysubscription--id-"
+               value="4"
+               data-component="url">
+    <br>
+<p>The ID of the subscription to be deleted. Example: <code>4</code></p>
+            </div>
+                    </form>
+
                 <h1 id="admin-management">admin Management</h1>
 
     <p>This API endpoint updates the profile image of an admin identified by UUID.</p>
@@ -952,15 +1603,15 @@ You can check the Dev Tools console for debugging information.</code></pre>
     "http://localhost/api/storeadmin" \
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
-    --form "full_name=dolores"\
-    --form "phone=a"\
-    --form "email=osinski.gina@example.com"\
+    --form "full_name=provident"\
+    --form "phone=nulla"\
+    --form "email=althea.kunze@example.org"\
     --form "birthdate=et"\
-    --form "gender_type=ea"\
+    --form "gender_type=eius"\
     --form "is_active="\
-    --form "password=,):9_jK6Bb*D&gt;wN]"\
-    --form "role_ids[]=sed"\
-    --form "image=@C:\Users\Dell\AppData\Local\Temp\php8A40.tmp" </code></pre></div>
+    --form "password=xHG[q[}Gfe'`/m-K"\
+    --form "role_ids[]=eum"\
+    --form "image=@C:\Users\Dell\AppData\Local\Temp\php1F38.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -974,14 +1625,14 @@ const headers = {
 };
 
 const body = new FormData();
-body.append('full_name', 'dolores');
-body.append('phone', 'a');
-body.append('email', 'osinski.gina@example.com');
+body.append('full_name', 'provident');
+body.append('phone', 'nulla');
+body.append('email', 'althea.kunze@example.org');
 body.append('birthdate', 'et');
-body.append('gender_type', 'ea');
+body.append('gender_type', 'eius');
 body.append('is_active', '');
-body.append('password', ',):9_jK6Bb*D&gt;wN]');
-body.append('role_ids[]', 'sed');
+body.append('password', 'xHG[q[}Gfe'`/m-K');
+body.append('role_ids[]', 'eum');
 body.append('image', document.querySelector('input[name="image"]').files[0]);
 
 fetch(url, {
@@ -1101,10 +1752,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="full_name"                data-endpoint="POSTapi-storeadmin"
-               value="dolores"
+               value="provident"
                data-component="body">
     <br>
-<p>The full name of the admin admin. Example: <code>dolores</code></p>
+<p>The full name of the admin admin. Example: <code>provident</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>phone</code></b>&nbsp;&nbsp;
@@ -1112,10 +1763,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="phone"                data-endpoint="POSTapi-storeadmin"
-               value="a"
+               value="nulla"
                data-component="body">
     <br>
-<p>The phone number of the admin admin. Example: <code>a</code></p>
+<p>The phone number of the admin admin. Example: <code>nulla</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -1123,10 +1774,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="POSTapi-storeadmin"
-               value="osinski.gina@example.com"
+               value="althea.kunze@example.org"
                data-component="body">
     <br>
-<p>valid email address The email address of the admin admin. Must be unique. Example: <code>osinski.gina@example.com</code></p>
+<p>valid email address The email address of the admin admin. Must be unique. Example: <code>althea.kunze@example.org</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>birthdate</code></b>&nbsp;&nbsp;
@@ -1145,10 +1796,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="gender_type"                data-endpoint="POSTapi-storeadmin"
-               value="ea"
+               value="eius"
                data-component="body">
     <br>
-<p>optional The gender type of the admin admin. Allowed values: male, female, other. Example: <code>ea</code></p>
+<p>optional The gender type of the admin admin. Allowed values: male, female, other. Example: <code>eius</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>is_active</code></b>&nbsp;&nbsp;
@@ -1177,10 +1828,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="POSTapi-storeadmin"
-               value=",):9_jK6Bb*D>wN]"
+               value="xHG[q[}Gfe'`/m-K"
                data-component="body">
     <br>
-<p>The password for the admin admin. Minimum length: 8 characters. Example: <code>,):9_jK6Bb*D&gt;wN]</code></p>
+<p>The password for the admin admin. Minimum length: 8 characters. Example: <code>xHG[q[}Gfe'</code>/m-K`</p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>image</code></b>&nbsp;&nbsp;
@@ -1191,7 +1842,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>optional The profile image of the admin admin (jpg, jpeg, png, gif formats only). Example: <code>C:\Users\Dell\AppData\Local\Temp\php8A40.tmp</code></p>
+<p>optional The profile image of the admin admin (jpg, jpeg, png, gif formats only). Example: <code>C:\Users\Dell\AppData\Local\Temp\php1F38.tmp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>role_ids</code></b>&nbsp;&nbsp;
@@ -1224,15 +1875,15 @@ You can check the Dev Tools console for debugging information.</code></pre>
     "http://localhost/api/updateAdmin/ab" \
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
-    --form "full_name=optio"\
-    --form "phone=dolor"\
-    --form "gender_type=accusantium"\
-    --form "birthdate=sit"\
-    --form "email=lon.sanford@example.net"\
-    --form "is_active=1"\
-    --form "password=1B7W$_f1pFltI8b2^S9e"\
-    --form "role_ids[]=qui"\
-    --form "image=@C:\Users\Dell\AppData\Local\Temp\php8A60.tmp" </code></pre></div>
+    --form "full_name=nisi"\
+    --form "phone=nostrum"\
+    --form "gender_type=aliquam"\
+    --form "birthdate=rem"\
+    --form "email=alek.graham@example.org"\
+    --form "is_active="\
+    --form "password=,ITdL&amp;~_osX3W0lj85&amp;k"\
+    --form "role_ids[]=vel"\
+    --form "image=@C:\Users\Dell\AppData\Local\Temp\php1F49.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -1246,14 +1897,14 @@ const headers = {
 };
 
 const body = new FormData();
-body.append('full_name', 'optio');
-body.append('phone', 'dolor');
-body.append('gender_type', 'accusantium');
-body.append('birthdate', 'sit');
-body.append('email', 'lon.sanford@example.net');
-body.append('is_active', '1');
-body.append('password', '1B7W$_f1pFltI8b2^S9e');
-body.append('role_ids[]', 'qui');
+body.append('full_name', 'nisi');
+body.append('phone', 'nostrum');
+body.append('gender_type', 'aliquam');
+body.append('birthdate', 'rem');
+body.append('email', 'alek.graham@example.org');
+body.append('is_active', '');
+body.append('password', ',ITdL&amp;~_osX3W0lj85&amp;k');
+body.append('role_ids[]', 'vel');
 body.append('image', document.querySelector('input[name="image"]').files[0]);
 
 fetch(url, {
@@ -1391,10 +2042,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="full_name"                data-endpoint="POSTapi-updateAdmin--id-"
-               value="optio"
+               value="nisi"
                data-component="body">
     <br>
-<p>The full name of the admin user. Example: <code>optio</code></p>
+<p>The full name of the admin user. Example: <code>nisi</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>phone</code></b>&nbsp;&nbsp;
@@ -1402,10 +2053,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="phone"                data-endpoint="POSTapi-updateAdmin--id-"
-               value="dolor"
+               value="nostrum"
                data-component="body">
     <br>
-<p>The phone number of the admin user. Example: <code>dolor</code></p>
+<p>The phone number of the admin user. Example: <code>nostrum</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>gender_type</code></b>&nbsp;&nbsp;
@@ -1413,10 +2064,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="gender_type"                data-endpoint="POSTapi-updateAdmin--id-"
-               value="accusantium"
+               value="aliquam"
                data-component="body">
     <br>
-<p>optional The gender type of the admin user. Allowed values: male, female, other. Example: <code>accusantium</code></p>
+<p>optional The gender type of the admin user. Allowed values: male, female, other. Example: <code>aliquam</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>birthdate</code></b>&nbsp;&nbsp;
@@ -1424,10 +2075,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="birthdate"                data-endpoint="POSTapi-updateAdmin--id-"
-               value="sit"
+               value="rem"
                data-component="body">
     <br>
-<p>optional The birthdate of the admin user (YYYY-MM-DD format). Example: <code>sit</code></p>
+<p>optional The birthdate of the admin user (YYYY-MM-DD format). Example: <code>rem</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -1435,10 +2086,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="POSTapi-updateAdmin--id-"
-               value="lon.sanford@example.net"
+               value="alek.graham@example.org"
                data-component="body">
     <br>
-<p>valid email address The email address of the admin user. Must be unique.Non editable. Example: <code>lon.sanford@example.net</code></p>
+<p>valid email address The email address of the admin user. Must be unique.Non editable. Example: <code>alek.graham@example.org</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>is_active</code></b>&nbsp;&nbsp;
@@ -1459,7 +2110,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>optional Whether the admin user is active or not (true/false). Example: <code>true</code></p>
+<p>optional Whether the admin user is active or not (true/false). Example: <code>false</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -1467,10 +2118,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="POSTapi-updateAdmin--id-"
-               value="1B7W$_f1pFltI8b2^S9e"
+               value=",ITdL&~_osX3W0lj85&k"
                data-component="body">
     <br>
-<p>The password for the admin user. Minimum length: 8 characters. Example: <code>1B7W$_f1pFltI8b2^S9e</code></p>
+<p>The password for the admin user. Minimum length: 8 characters. Example: <code>,ITdL&amp;~_osX3W0lj85&amp;k</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>role_ids</code></b>&nbsp;&nbsp;
@@ -1494,7 +2145,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>optional The profile image of the admin user (jpg, jpeg, png, gif formats only). Example: <code>C:\Users\Dell\AppData\Local\Temp\php8A60.tmp</code></p>
+<p>optional The profile image of the admin user (jpg, jpeg, png, gif formats only). Example: <code>C:\Users\Dell\AppData\Local\Temp\php1F49.tmp</code></p>
         </div>
         </form>
 
@@ -1512,15 +2163,15 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/updateadminimage/corporis" \
+    "http://localhost/api/updateadminimage/dolorem" \
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
-    --form "image=@C:\Users\Dell\AppData\Local\Temp\php8A72.tmp" </code></pre></div>
+    --form "image=@C:\Users\Dell\AppData\Local\Temp\php1F6A.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/updateadminimage/corporis"
+    "http://localhost/api/updateadminimage/dolorem"
 );
 
 const headers = {
@@ -1645,10 +2296,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="POSTapi-updateadminimage--id-"
-               value="corporis"
+               value="dolorem"
                data-component="url">
     <br>
-<p>The ID of the updateadminimage. Example: <code>corporis</code></p>
+<p>The ID of the updateadminimage. Example: <code>dolorem</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -1660,7 +2311,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>The image file to upload (JPEG, JPG, PNG only, max 2MB). Example: <code>C:\Users\Dell\AppData\Local\Temp\php8A72.tmp</code></p>
+<p>The image file to upload (JPEG, JPG, PNG only, max 2MB). Example: <code>C:\Users\Dell\AppData\Local\Temp\php1F6A.tmp</code></p>
         </div>
         </form>
 
@@ -1682,10 +2333,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"old_password\": \"enim\",
-    \"password\": \"g&gt;$:JFFJ%\",
-    \"full_name\": \"itaque\",
-    \"phone\": \"qui\"
+    \"old_password\": \"ducimus\",
+    \"password\": \"~as,P$kC5_Pt\",
+    \"full_name\": \"officiis\",
+    \"phone\": \"fugiat\"
 }"
 </code></pre></div>
 
@@ -1701,10 +2352,10 @@ const headers = {
 };
 
 let body = {
-    "old_password": "enim",
-    "password": "g&gt;$:JFFJ%",
-    "full_name": "itaque",
-    "phone": "qui"
+    "old_password": "ducimus",
+    "password": "~as,P$kC5_Pt",
+    "full_name": "officiis",
+    "phone": "fugiat"
 };
 
 fetch(url, {
@@ -1776,10 +2427,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="old_password"                data-endpoint="POSTapi-changepassword"
-               value="enim"
+               value="ducimus"
                data-component="body">
     <br>
-<p>Example: <code>enim</code></p>
+<p>Example: <code>ducimus</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -1787,10 +2438,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="POSTapi-changepassword"
-               value="g>$:JFFJ%"
+               value="~as,P$kC5_Pt"
                data-component="body">
     <br>
-<p>Must be at least 8 characters. Example: <code>g&gt;$:JFFJ%</code></p>
+<p>Must be at least 8 characters. Example: <code>~as,P$kC5_Pt</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>full_name</code></b>&nbsp;&nbsp;
@@ -1798,10 +2449,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="full_name"                data-endpoint="POSTapi-changepassword"
-               value="itaque"
+               value="officiis"
                data-component="body">
     <br>
-<p>The full name of the admin user. Example: <code>itaque</code></p>
+<p>The full name of the admin user. Example: <code>officiis</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>phone</code></b>&nbsp;&nbsp;
@@ -1809,10 +2460,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="phone"                data-endpoint="POSTapi-changepassword"
-               value="qui"
+               value="fugiat"
                data-component="body">
     <br>
-<p>The phone number of the admin user. Example: <code>qui</code></p>
+<p>The phone number of the admin user. Example: <code>fugiat</code></p>
         </div>
         </form>
 

@@ -25,26 +25,33 @@ use App\Http\Controllers\Api\OrderApiController;
 /**
  * Login Api
  */
-Route::post('/adminlogin',[AdminAuthController::class,'adminLogin'])->name('admin.login');
+Route::post('/adminlogin', [AdminAuthController::class, 'adminLogin'])->name('admin.login');
+
+//##forgotpasswordApi
+Route::post('password/email', [AdminAuthController::class,'sendResetLinkEmail']);
+Route::post('password/reset', [AdminAuthController::class,'reset']);
 
 //##Api for admin
 Route::group(['middleware' => ['auth:adminapi']], function () {
 
-    Route::get('/getadminprofile',[AdminAuthController::class,'getAdminProfile']);
-    Route::post('/storeadmin',[AdminAuthController::class,'storeAdmin']);
-    Route::post('/updateAdmin/{id}',[AdminAuthController::class,'updateAdmin']);
-    Route::post('/updateadminimage/{id}',[AdminAuthController::class,'updateImage']);
-    Route::post('/changepassword',[AdminAuthController::class,'changePassword']);
-    Route::post('/logout',[AdminAuthController::class,'logout']);
-    Route::post('/deleteadmin/{id}',[AdminAuthController::class,'delete']);
+    Route::get('/getadminprofile', [AdminAuthController::class, 'getAdminProfile']);
+    Route::post('/storeadmin', [AdminAuthController::class, 'storeAdmin']);
+    Route::post('/updateAdmin/{id}', [AdminAuthController::class, 'updateAdmin']);
+    Route::post('/updateadminimage/{id}', [AdminAuthController::class, 'updateImage']);
+    Route::post('/logout', [AdminAuthController::class, 'logout']);
+    Route::post('/deleteadmin/{id}', [AdminAuthController::class, 'delete']);
+    Route::post('/changepassword', [AdminAuthController::class, 'changePassword']);
 
     //##Api for getting suscription
-     Route::get('/getsubscription',[SubscriptionApiController::class,'getSubscription']);
-     
+    Route::get('/getsubscription', [SubscriptionApiController::class, 'getSubscription']);
+    Route::post('/updatesubscription/{id}', [SubscriptionApiController::class, 'updateSubscription']);
+    Route::post('/destroysubscription/{id}', [SubscriptionApiController::class, 'destroySubscription']);
+
     //##Api for getting categories
-     Route::get('/getcategories',[CategoriesApiController::class,'getCategories']);
+    Route::get('/getcategories', [CategoriesApiController::class, 'getCategories']);
+    Route::post('/updatecategories/{id}', [CategoriesApiController::class, 'updateCategory']);
+    Route::post('/destroycategory/{id}', [CategoriesApiController::class, 'destroyCategory']);
 
-     //##Api for orders
-     Route::post('/order/{id}',[OrderApiController::class,'store']);
+    //##Api for orders
+    Route::post('/order/{id}', [OrderApiController::class, 'store']);
 });
-

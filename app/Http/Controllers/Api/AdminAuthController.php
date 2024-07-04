@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
@@ -12,6 +13,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\CommenController;
 use Symfony\Component\HttpFoundation\Response;
@@ -586,6 +589,95 @@ class AdminAuthController extends Controller
                 'success' => false,
                 'message' => 'Internal Server Error',
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+/**
+ * Send a password reset link to the specified email address.
+ *
+ * This endpoint sends a password reset link to the provided email address.
+ * If successful, it returns a JSON response with a success message and status true.
+ * If unsuccessful, it returns a JSON response with an error message and status false.
+ *
+ * Request:
+ * - email: Required email address to send the reset link.
+ *
+ * Response (Success):
+ * {
+ *     "message": "Reset link sent to your email.",
+ *     "status": true
+ * }
+ *
+ * Response (Failure):
+ * {
+ *     "message": "Unable to send reset link.",
+ *     "status": false
+ * }
+ * */
+
+    public function sendResetLinkEmail(Request $request)
+    {
+        $request->validate(['email' => 'required|email']);
+
+        // Send the password reset link
+        $status = Password::sendResetLink(
+            $request->only('email')
+        );
+
+        // Show success or failure message
+        return $status === Password::RESET_LINK_SENT
+            ? response()->json(['message' => 'Reset link sent to your email.', 'status' => true], 200)
+            : response()->json(['message' => 'Unable to send reset link.', 'status' => false], 400);
+    }
+/**
+ * Reset the user's password.
+ *
+ * This endpoint resets the password of the user with the provided token and email address.
+ * If successful, it returns a JSON response with a success message and status true.
+ * If unsuccessful, it returns a JSON response with an error message and status false.
+ *
+ * Request:
+ * - token: Required token for password reset.
+ * - email: Required email address of the user.
+ * - password: Required new password for the user (confirmed with password_confirmation).
+ *
+ * Response (Success):
+ * {
+ *     "message": "Password has been reset.",
+ *     "status": true
+ * }
+ *
+ * Response (Failure):
+ * {
+ *     "message": "Unable to reset password.",
+ *     "status": false
+ * }
+ */
+    public function reset(Request $request)
+    {
+        $request->validate([
+            'token' => ['required'],
+            'email' => ['required', 'email'],
+            'password' => ['required', 'confirmed'],
+        ]);
+        $status = Password::reset(
+            $request->only('email', 'password', 'password_confirmation', 'token'),
+            function ($user) use ($request) {
+
+
+                $user->forceFill([
+                    'password' => Hash::make($request->password),
+                    'remember_token' => Str::random(60),
+                ])->save();
+
+                event(new PasswordReset($user));
+            }
+        );
+
+        if ($status == Password::PASSWORD_RESET) {
+            return  response()->json(['message' => 'Password has been reset.', 'status' => true]);
+        } else {
+            return    response()->json(['message' => 'Unable to reset password.', 'status' => false], 400);
         }
     }
 }

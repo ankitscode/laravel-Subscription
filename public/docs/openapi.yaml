@@ -137,6 +137,183 @@ paths:
                     example: 'Internal Server Error'
       tags:
         - Categories
+  '/api/updatecategories/{id}':
+    post:
+      summary: 'Update a category by ID.'
+      operationId: updateACategoryByID
+      description: 'This endpoint updates the name of a category identified by its ID.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'category updated successfully'
+                  data:
+                    id: 10
+                    name: icecream
+                    parent_name: null
+                    media_id: null
+                    is_active: 1
+                    is_menu: 1
+                properties:
+                  message:
+                    type: string
+                    example: 'category updated successfully'
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 10
+                      name:
+                        type: string
+                        example: icecream
+                      parent_name:
+                        type: string
+                        example: null
+                      media_id:
+                        type: string
+                        example: null
+                      is_active:
+                        type: integer
+                        example: 1
+                      is_menu:
+                        type: integer
+                        example: 1
+        400:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error:
+                    name:
+                      - 'The name field is required.'
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      name:
+                        type: array
+                        example:
+                          - 'The name field is required.'
+                        items:
+                          type: string
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: Unauthenticated.
+                properties:
+                  error:
+                    type: string
+                    example: Unauthenticated.
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: false
+                  message: 'Internal Server Error'
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Internal Server Error'
+      tags:
+        - Categories
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'The new name for the category.'
+                  example: non
+              required:
+                - name
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the category to update.'
+        example: 14
+        required: true
+        schema:
+          type: integer
+  '/api/destroycategory/{id}':
+    post:
+      summary: 'Destroy a category by ID.'
+      operationId: destroyACategoryByID
+      description: 'This endpoint deletes a category identified by its ID.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: 'Category deleted successfully'
+                properties:
+                  status:
+                    type: string
+                    example: 'Category deleted successfully'
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: Unauthenticated.
+                properties:
+                  error:
+                    type: string
+                    example: Unauthenticated.
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: false
+                  message: 'Internal Server Error'
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Internal Server Error'
+      tags:
+        - Categories
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the category to delete.'
+        example: 7
+        required: true
+        schema:
+          type: integer
   /api/adminlogin:
     post:
       summary: 'Log in a Admin.'
@@ -256,11 +433,11 @@ paths:
                 email:
                   type: string
                   description: 'valid email address The email of the admin.'
-                  example: bud25@example.net
+                  example: bryana14@example.net
                 password:
                   type: string
                   description: 'min:8 The password of the admin.'
-                  example: 'mqV&iU_^'
+                  example: "veLt8n$'ft'G6"
               required:
                 - email
                 - password
@@ -319,7 +496,7 @@ paths:
                 id:
                   type: integer
                   description: 'The ID of the subscription to associate with the order.'
-                  example: 10
+                  example: 9
               required:
                 - id
     parameters:
@@ -327,7 +504,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the order.'
-        example: quibusdam
+        example: molestias
         required: true
         schema:
           type: string
@@ -456,6 +633,197 @@ paths:
                     example: 'Internal Server Error'
       tags:
         - Subscriptions
+  '/api/updatesubscription/{id}':
+    post:
+      summary: 'Update a subscription.'
+      operationId: updateASubscription
+      description: 'This endpoint updates an existing subscription based on the provided subscription ID.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'subscription updated successfully'
+                  data:
+                    id: 17
+                    name: 'halfed Yearly'
+                    duration: '30 days'
+                    amount: '1500'
+                    uuid: null
+                    remember_token: null
+                    is_active: 1
+                properties:
+                  message:
+                    type: string
+                    example: 'subscription updated successfully'
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 17
+                      name:
+                        type: string
+                        example: 'halfed Yearly'
+                      duration:
+                        type: string
+                        example: '30 days'
+                      amount:
+                        type: string
+                        example: '1500'
+                      uuid:
+                        type: string
+                        example: null
+                      remember_token:
+                        type: string
+                        example: null
+                      is_active:
+                        type: integer
+                        example: 1
+        400:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error:
+                    name:
+                      - 'The name field is required.'
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      name:
+                        type: array
+                        example:
+                          - 'The name field is required.'
+                        items:
+                          type: string
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: Unauthenticated.
+                properties:
+                  error:
+                    type: string
+                    example: Unauthenticated.
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: false
+                  message: 'Internal Server Error'
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Internal Server Error'
+      tags:
+        - Subscriptions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'The name of the subscription.'
+                  example: '"halfed Yearly"'
+                duration:
+                  type: string
+                  description: 'The duration of the subscription.'
+                  example: '"30 days"'
+                amount:
+                  type: string
+                  description: 'The amount of the subscription.'
+                  example: '"1500"'
+              required:
+                - name
+                - duration
+                - amount
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the subscription to update.'
+        example: 8
+        required: true
+        schema:
+          type: integer
+  '/api/destroysubscription/{id}':
+    post:
+      summary: 'Destroy a subscription.'
+      operationId: destroyASubscription
+      description: 'This endpoint deletes a subscription associated with the authenticated user.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: 'Subscription deleted successfully'
+                properties:
+                  status:
+                    type: string
+                    example: 'Subscription deleted successfully'
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: Unauthenticated.
+                properties:
+                  error:
+                    type: string
+                    example: Unauthenticated.
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: false
+                  message: 'Internal Server Error'
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Internal Server Error'
+      tags:
+        - Subscriptions
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the subscription to be deleted.'
+        example: 4
+        required: true
+        schema:
+          type: integer
   /api/getadminprofile:
     get:
       summary: "Retrieve the authenticated admin's profile."
@@ -541,15 +909,15 @@ paths:
                 full_name:
                   type: string
                   description: 'The full name of the admin admin.'
-                  example: dolores
+                  example: provident
                 phone:
                   type: string
                   description: 'The phone number of the admin admin.'
-                  example: a
+                  example: nulla
                 email:
                   type: string
                   description: 'valid email address The email address of the admin admin. Must be unique.'
-                  example: osinski.gina@example.com
+                  example: althea.kunze@example.org
                 birthdate:
                   type: string
                   description: 'optional The birthdate of the admin admin (YYYY-MM-DD format).'
@@ -557,7 +925,7 @@ paths:
                 gender_type:
                   type: string
                   description: 'optional The gender type of the admin admin. Allowed values: male, female, other.'
-                  example: ea
+                  example: eius
                 is_active:
                   type: boolean
                   description: 'optional Whether the admin admin is active or not (true/false).'
@@ -565,7 +933,7 @@ paths:
                 password:
                   type: string
                   description: 'The password for the admin admin. Minimum length: 8 characters.'
-                  example: ',):9_jK6Bb*D>wN]'
+                  example: "xHG[q[}Gfe'`/m-K"
                 image:
                   type: string
                   format: binary
@@ -574,7 +942,7 @@ paths:
                   type: array
                   description: 'Array of role IDs assigned to the admin admin.'
                   example:
-                    - sed
+                    - eum
                   items:
                     type: string
               required:
@@ -640,36 +1008,36 @@ paths:
                 full_name:
                   type: string
                   description: 'The full name of the admin user.'
-                  example: optio
+                  example: nisi
                 phone:
                   type: string
                   description: 'The phone number of the admin user.'
-                  example: dolor
+                  example: nostrum
                 gender_type:
                   type: string
                   description: 'optional The gender type of the admin user. Allowed values: male, female, other.'
-                  example: accusantium
+                  example: aliquam
                 birthdate:
                   type: string
                   description: 'optional The birthdate of the admin user (YYYY-MM-DD format).'
-                  example: sit
+                  example: rem
                 email:
                   type: string
                   description: 'valid email address The email address of the admin user. Must be unique.Non editable.'
-                  example: lon.sanford@example.net
+                  example: alek.graham@example.org
                 is_active:
                   type: boolean
                   description: 'optional Whether the admin user is active or not (true/false).'
-                  example: true
+                  example: false
                 password:
                   type: string
                   description: 'The password for the admin user. Minimum length: 8 characters.'
-                  example: 1B7W$_f1pFltI8b2^S9e
+                  example: ',ITdL&~_osX3W0lj85&k'
                 role_ids:
                   type: array
                   description: 'Array of role IDs assigned to the admin user.'
                   example:
-                    - qui
+                    - vel
                   items:
                     type: string
                 image:
@@ -779,7 +1147,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the updateadminimage.'
-        example: corporis
+        example: dolorem
         required: true
         schema:
           type: string
@@ -802,19 +1170,19 @@ paths:
                 old_password:
                   type: string
                   description: ''
-                  example: enim
+                  example: ducimus
                 password:
                   type: string
                   description: 'Must be at least 8 characters.'
-                  example: 'g>$:JFFJ%'
+                  example: '~as,P$kC5_Pt'
                 full_name:
                   type: string
                   description: 'The full name of the admin user.'
-                  example: itaque
+                  example: officiis
                 phone:
                   type: string
                   description: 'The phone number of the admin user.'
-                  example: qui
+                  example: fugiat
               required:
                 - old_password
                 - password

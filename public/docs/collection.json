@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Admin Panel",
-        "_postman_id": "c85a9f66-fbc9-40c2-87f4-e8d2413ae5a7",
+        "_postman_id": "5f6f834f-8f75-4798-89cb-9acf05f2242a",
         "description": "These are rest api which use BearerToken for authentication.",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -62,6 +62,119 @@
                             "name": ""
                         }
                     ]
+                },
+                {
+                    "name": "Update a category by ID.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/updatecategories\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/updatecategories\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "14",
+                                    "description": "The ID of the category to update."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"non\"}"
+                        },
+                        "description": "This endpoint updates the name of a category identified by its ID."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"message\": \"category updated successfully\",\n    \"data\": {\n        \"id\": 10,\n        \"name\": \"icecream\",\n        \"parent_name\": null,\n        \"media_id\": null,\n        \"is_active\": 1,\n        \"is_menu\": 1\n    }\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 400,
+                            "body": "{\n    \"error\": {\n        \"name\": [\"The name field is required.\"]\n    }\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"error\": \"Unauthenticated.\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 500,
+                            "body": "{\n    \"success\": false,\n    \"message\": \"Internal Server Error\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Destroy a category by ID.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/destroycategory\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/destroycategory\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "7",
+                                    "description": "The ID of the category to delete."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "This endpoint deletes a category identified by its ID."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"status\": \"Category deleted successfully\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"error\": \"Unauthenticated.\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 500,
+                            "body": "{\n    \"success\": false,\n    \"message\": \"Internal Server Error\"\n}",
+                            "name": ""
+                        }
+                    ]
                 }
             ]
         },
@@ -95,7 +208,7 @@
                                 ],
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\"email\":\"bud25@example.net\",\"password\":\"mqV&iU_^\"}"
+                                    "raw": "{\"email\":\"bryana14@example.net\",\"password\":\"veLt8n$'ft'G6\"}"
                                 },
                                 "description": "",
                                 "auth": {
@@ -143,7 +256,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "quibusdam",
+                                    "value": "molestias",
                                     "description": "The ID of the order."
                                 }
                             ]
@@ -161,7 +274,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"id\":10}"
+                            "raw": "{\"id\":9}"
                         },
                         "description": ""
                     },
@@ -220,6 +333,119 @@
                             "header": [],
                             "code": 200,
                             "body": "{\n    \"message\": \"Successfully retrieved the data of subscriptions\",\n    \"subscriptions\": [\n        {\n            \"id\": 4,\n            \"name\": \"Basic plan\",\n            \"duration\": \"1 months\",\n            \"amount\": \"299\",\n            \"uuid\": null,\n            \"remember_token\": null,\n            \"is_active\": 1\n        },\n        {\n            \"id\": 5,\n            \"name\": \"Half yearly plan\",\n            \"duration\": \"6 Months\",\n            \"amount\": \"1499\",\n            \"uuid\": null,\n            \"remember_token\": null,\n            \"is_active\": 1\n        },\n        {\n            \"id\": 7,\n            \"name\": \"Yearly Plan\",\n            \"duration\": \"1 Year\",\n            \"amount\": \"2999\",\n            \"uuid\": null,\n            \"remember_token\": null,\n            \"is_active\": 1\n        }\n    ]\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"error\": \"Unauthenticated.\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 500,
+                            "body": "{\n    \"success\": false,\n    \"message\": \"Internal Server Error\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update a subscription.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/updatesubscription\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/updatesubscription\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "8",
+                                    "description": "The ID of the subscription to update."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"\\\"halfed Yearly\\\"\",\"duration\":\"\\\"30 days\\\"\",\"amount\":\"\\\"1500\\\"\"}"
+                        },
+                        "description": "This endpoint updates an existing subscription based on the provided subscription ID."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"message\": \"subscription updated successfully\",\n    \"data\": {\n        \"id\": 17,\n        \"name\": \"halfed Yearly\",\n        \"duration\": \"30 days\",\n        \"amount\": \"1500\",\n        \"uuid\": null,\n        \"remember_token\": null,\n        \"is_active\": 1\n    }\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 400,
+                            "body": "{\n    \"error\": {\n        \"name\": [\n            \"The name field is required.\"\n        ]\n    }\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"error\": \"Unauthenticated.\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 500,
+                            "body": "{\n    \"success\": false,\n    \"message\": \"Internal Server Error\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Destroy a subscription.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/destroysubscription\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/destroysubscription\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "4",
+                                    "description": "The ID of the subscription to be deleted."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "This endpoint deletes a subscription associated with the authenticated user."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"status\": \"Subscription deleted successfully\"\n}",
                             "name": ""
                         },
                         {
@@ -305,19 +531,19 @@
                             "formdata": [
                                 {
                                     "key": "full_name",
-                                    "value": "dolores",
+                                    "value": "provident",
                                     "type": "text",
                                     "description": "The full name of the admin admin."
                                 },
                                 {
                                     "key": "phone",
-                                    "value": "a",
+                                    "value": "nulla",
                                     "type": "text",
                                     "description": "The phone number of the admin admin."
                                 },
                                 {
                                     "key": "email",
-                                    "value": "osinski.gina@example.com",
+                                    "value": "althea.kunze@example.org",
                                     "type": "text",
                                     "description": "valid email address The email address of the admin admin. Must be unique."
                                 },
@@ -329,7 +555,7 @@
                                 },
                                 {
                                     "key": "gender_type",
-                                    "value": "ea",
+                                    "value": "eius",
                                     "type": "text",
                                     "description": "optional The gender type of the admin admin. Allowed values: male, female, other."
                                 },
@@ -341,13 +567,13 @@
                                 },
                                 {
                                     "key": "password",
-                                    "value": ",):9_jK6Bb*D>wN]",
+                                    "value": "xHG[q[}Gfe'`\/m-K",
                                     "type": "text",
                                     "description": "The password for the admin admin. Minimum length: 8 characters."
                                 },
                                 {
                                     "key": "role_ids[0]",
-                                    "value": "sed",
+                                    "value": "eum",
                                     "type": "text",
                                     "description": ""
                                 },
@@ -420,49 +646,49 @@
                             "formdata": [
                                 {
                                     "key": "full_name",
-                                    "value": "optio",
+                                    "value": "nisi",
                                     "type": "text",
                                     "description": "The full name of the admin user."
                                 },
                                 {
                                     "key": "phone",
-                                    "value": "dolor",
+                                    "value": "nostrum",
                                     "type": "text",
                                     "description": "The phone number of the admin user."
                                 },
                                 {
                                     "key": "gender_type",
-                                    "value": "accusantium",
+                                    "value": "aliquam",
                                     "type": "text",
                                     "description": "optional The gender type of the admin user. Allowed values: male, female, other."
                                 },
                                 {
                                     "key": "birthdate",
-                                    "value": "sit",
+                                    "value": "rem",
                                     "type": "text",
                                     "description": "optional The birthdate of the admin user (YYYY-MM-DD format)."
                                 },
                                 {
                                     "key": "email",
-                                    "value": "lon.sanford@example.net",
+                                    "value": "alek.graham@example.org",
                                     "type": "text",
                                     "description": "valid email address The email address of the admin user. Must be unique.Non editable."
                                 },
                                 {
                                     "key": "is_active",
-                                    "value": true,
+                                    "value": false,
                                     "type": "text",
                                     "description": "optional Whether the admin user is active or not (true\/false)."
                                 },
                                 {
                                     "key": "password",
-                                    "value": "1B7W$_f1pFltI8b2^S9e",
+                                    "value": ",ITdL&~_osX3W0lj85&k",
                                     "type": "text",
                                     "description": "The password for the admin user. Minimum length: 8 characters."
                                 },
                                 {
                                     "key": "role_ids[0]",
-                                    "value": "qui",
+                                    "value": "vel",
                                     "type": "text",
                                     "description": ""
                                 },
@@ -517,7 +743,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "corporis",
+                                    "value": "dolorem",
                                     "description": "The ID of the updateadminimage."
                                 }
                             ]
@@ -600,7 +826,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"old_password\":\"enim\",\"password\":\"g>$:JFFJ%\",\"full_name\":\"itaque\",\"phone\":\"qui\"}"
+                            "raw": "{\"old_password\":\"ducimus\",\"password\":\"~as,P$kC5_Pt\",\"full_name\":\"officiis\",\"phone\":\"fugiat\"}"
                         },
                         "description": ""
                     },
