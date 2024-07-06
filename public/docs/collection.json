@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Admin Panel",
-        "_postman_id": "5f6f834f-8f75-4798-89cb-9acf05f2242a",
+        "_postman_id": "d27b04c7-8cb8-4b84-98b8-2c62ced589d3",
         "description": "These are rest api which use BearerToken for authentication.",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -75,7 +75,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "14",
+                                    "value": "13",
                                     "description": "The ID of the category to update."
                                 }
                             ]
@@ -93,7 +93,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"non\"}"
+                            "raw": "{\"name\":\"inventore\"}"
                         },
                         "description": "This endpoint updates the name of a category identified by its ID."
                     },
@@ -136,7 +136,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "7",
+                                    "value": "6",
                                     "description": "The ID of the category to delete."
                                 }
                             ]
@@ -208,7 +208,7 @@
                                 ],
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\"email\":\"bryana14@example.net\",\"password\":\"veLt8n$'ft'G6\"}"
+                                    "raw": "{\"email\":\"tromp.sunny@example.org\",\"password\":\"1\\\/;mQ?J_N],f6Xb\"}"
                                 },
                                 "description": "",
                                 "auth": {
@@ -237,29 +237,15 @@
                             ]
                         }
                     ]
-                }
-            ]
-        },
-        {
-            "name": "Orders",
-            "description": "",
-            "item": [
+                },
                 {
-                    "name": "Store a new order.",
+                    "name": "Send a password reset link to the specified email address.",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/order\/:id",
+                            "path": "api\/password\/email",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/order\/:id",
-                            "variable": [
-                                {
-                                    "id": "id",
-                                    "key": "id",
-                                    "value": "molestias",
-                                    "description": "The ID of the order."
-                                }
-                            ]
+                            "raw": "{{baseUrl}}\/api\/password\/email"
                         },
                         "method": "POST",
                         "header": [
@@ -274,9 +260,77 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"id\":9}"
+                            "raw": "{\"email\":\"boyer.roxane@example.net\"}"
                         },
-                        "description": ""
+                        "description": "This endpoint sends a password reset link to the provided email address.\nIf successful, it returns a JSON response with a success message and status true.\nIf unsuccessful, it returns a JSON response with an error message and status false.\n\nRequest:\n- email: Required email address to send the reset link.\n\nResponse (Success):\n{\n    \"message\": \"Reset link sent to your email.\",\n    \"status\": true\n}\n\nResponse (Failure):\n{\n    \"message\": \"Unable to send reset link.\",\n    \"status\": false\n}",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Reset the user's password.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/password\/reset",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/password\/reset"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"token\":\"eveniet\",\"email\":\"randal.weissnat@example.net\",\"password\":\"fugiat\"}"
+                        },
+                        "description": "This endpoint resets the password of the user with the provided token and email address.\nIf successful, it returns a JSON response with a success message and status true.\nIf unsuccessful, it returns a JSON response with an error message and status false.\n\nRequest:\n- token: Required token for password reset.\n- email: Required email address of the user.\n- password: Required new password for the user (confirmed with password_confirmation).\n\nResponse (Success):\n{\n    \"message\": \"Password has been reset.\",\n    \"status\": true\n}\n\nResponse (Failure):\n{\n    \"message\": \"Unable to reset password.\",\n    \"status\": false\n}",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Orders",
+            "description": "",
+            "item": [
+                {
+                    "name": "Store a new order.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/order",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/order"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"id\":8}"
+                        },
+                        "description": "This endpoint allows authenticated users to genrate unique id for subscription."
                     },
                     "response": [
                         {
@@ -289,6 +343,108 @@
                             "header": [],
                             "code": 401,
                             "body": "{\n    \"error\": \"Unauthenticated.\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 500,
+                            "body": "{\n    \"success\": false,\n    \"message\": \"Internal Server Error\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Retrieve a list of all orders.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/orderlist",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/orderlist"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "This endpoint retrieves a list of all orders available in the system."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"status\": true,\n    \"message\": \"succsessfully get all orders\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"order_id\": \"4c3db506-35dc-4382-b0e2-3a195fd4a347\",\n            \"subscription_id\": 16,\n            \"is_active\": 1\n        },\n        {\n            \"id\": 4,\n            \"order_id\": \"896da7a6-82e6-4b11-8748-fd9ddd73ff38\",\n            \"subscription_id\": 18,\n            \"is_active\": 1\n        }\n    ]\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"error\": \"Unauthenticated.\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 500,
+                            "body": "{\n    \"success\": false,\n    \"message\": \"Internal Server Error\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Retrieve details of a specific order.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/orderview\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/orderview\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "17",
+                                    "description": "The ID of the order."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "This endpoint retrieves details of a specific order identified by its ID."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"status\": true,\n    \"message\": \"sucessfully get order detail\",\n    \"data\": {\n        \"id\": 1,\n        \"order_id\": \"4c3db506-35dc-4382-b0e2-3a195fd4a347\",\n        \"subscription_id\": 16,\n        \"is_active\": 1\n    }\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"error\": \"Unauthenticated.\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\n    \"success\": false,\n    \"message\": \"Order not found.\"\n}",
                             "name": ""
                         },
                         {
@@ -361,7 +517,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "8",
+                                    "value": "9",
                                     "description": "The ID of the subscription to update."
                                 }
                             ]
@@ -422,7 +578,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "4",
+                                    "value": "2",
                                     "description": "The ID of the subscription to be deleted."
                                 }
                             ]
@@ -531,49 +687,49 @@
                             "formdata": [
                                 {
                                     "key": "full_name",
-                                    "value": "provident",
+                                    "value": "ducimus",
                                     "type": "text",
                                     "description": "The full name of the admin admin."
                                 },
                                 {
                                     "key": "phone",
-                                    "value": "nulla",
+                                    "value": "est",
                                     "type": "text",
                                     "description": "The phone number of the admin admin."
                                 },
                                 {
                                     "key": "email",
-                                    "value": "althea.kunze@example.org",
+                                    "value": "bashirian.elmer@example.com",
                                     "type": "text",
                                     "description": "valid email address The email address of the admin admin. Must be unique."
                                 },
                                 {
                                     "key": "birthdate",
-                                    "value": "et",
+                                    "value": "vel",
                                     "type": "text",
                                     "description": "optional The birthdate of the admin admin (YYYY-MM-DD format)."
                                 },
                                 {
                                     "key": "gender_type",
-                                    "value": "eius",
+                                    "value": "omnis",
                                     "type": "text",
                                     "description": "optional The gender type of the admin admin. Allowed values: male, female, other."
                                 },
                                 {
                                     "key": "is_active",
-                                    "value": false,
+                                    "value": true,
                                     "type": "text",
                                     "description": "optional Whether the admin admin is active or not (true\/false)."
                                 },
                                 {
                                     "key": "password",
-                                    "value": "xHG[q[}Gfe'`\/m-K",
+                                    "value": "Vo:-8Yd\\]:SXrVHp",
                                     "type": "text",
                                     "description": "The password for the admin admin. Minimum length: 8 characters."
                                 },
                                 {
                                     "key": "role_ids[0]",
-                                    "value": "eum",
+                                    "value": "nemo",
                                     "type": "text",
                                     "description": ""
                                 },
@@ -625,7 +781,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "ab",
+                                    "value": "quasi",
                                     "description": "The ID of the updateAdmin."
                                 }
                             ]
@@ -646,49 +802,49 @@
                             "formdata": [
                                 {
                                     "key": "full_name",
-                                    "value": "nisi",
+                                    "value": "sequi",
                                     "type": "text",
                                     "description": "The full name of the admin user."
                                 },
                                 {
                                     "key": "phone",
-                                    "value": "nostrum",
+                                    "value": "voluptatum",
                                     "type": "text",
                                     "description": "The phone number of the admin user."
                                 },
                                 {
                                     "key": "gender_type",
-                                    "value": "aliquam",
+                                    "value": "nihil",
                                     "type": "text",
                                     "description": "optional The gender type of the admin user. Allowed values: male, female, other."
                                 },
                                 {
                                     "key": "birthdate",
-                                    "value": "rem",
+                                    "value": "maiores",
                                     "type": "text",
                                     "description": "optional The birthdate of the admin user (YYYY-MM-DD format)."
                                 },
                                 {
                                     "key": "email",
-                                    "value": "alek.graham@example.org",
+                                    "value": "ckuhlman@example.com",
                                     "type": "text",
                                     "description": "valid email address The email address of the admin user. Must be unique.Non editable."
                                 },
                                 {
                                     "key": "is_active",
-                                    "value": false,
+                                    "value": true,
                                     "type": "text",
                                     "description": "optional Whether the admin user is active or not (true\/false)."
                                 },
                                 {
                                     "key": "password",
-                                    "value": ",ITdL&~_osX3W0lj85&k",
+                                    "value": "`'x*~TA[.oRy",
                                     "type": "text",
                                     "description": "The password for the admin user. Minimum length: 8 characters."
                                 },
                                 {
                                     "key": "role_ids[0]",
-                                    "value": "vel",
+                                    "value": "adipisci",
                                     "type": "text",
                                     "description": ""
                                 },
@@ -743,7 +899,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "dolorem",
+                                    "value": "rerum",
                                     "description": "The ID of the updateadminimage."
                                 }
                             ]
@@ -805,34 +961,6 @@
                     ]
                 },
                 {
-                    "name": "Change auth  user password.",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/changepassword",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/changepassword"
-                        },
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\"old_password\":\"ducimus\",\"password\":\"~as,P$kC5_Pt\",\"full_name\":\"officiis\",\"phone\":\"fugiat\"}"
-                        },
-                        "description": ""
-                    },
-                    "response": []
-                },
-                {
                     "name": "Log out the authenticated user.",
                     "request": {
                         "url": {
@@ -888,7 +1016,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "et",
+                                    "value": "enim",
                                     "description": "The ID of the user to delete."
                                 }
                             ]
@@ -924,6 +1052,146 @@
                             "header": [],
                             "code": 500,
                             "body": "{\n    \"error\": \"Something went wrong.\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Change auth  user password.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/changepassword",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/changepassword"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"old_password\":\"nihil\",\"password\":\"r~h|ssOhy:\",\"full_name\":\"consequuntur\",\"phone\":\"sit\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "user",
+            "description": "",
+            "item": [
+                {
+                    "name": "Store user interests.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/userinterest",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/userinterest"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"id\":[11,12]}"
+                        },
+                        "description": "Creates interests for the authenticated user based on provided category IDs."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"status\": true,\n    \"message\": \"Successfully created interests\",\n    \"data\": {\n        \"user_id\": 1,\n        \"category_id\": 13,\n        \"id\": 3\n    }\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"error\": \"Unauthenticated.\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n    \"errors\": {\n        \"id\": [\n            \"The id field is required.\"\n        ]\n    }\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 500,
+                            "body": "{\n    \"success\": false,\n    \"message\": \"Internal Server Error\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Store a new subscription plan for the authenticated user.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/usersubscription",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/usersubscription"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"id\":15}"
+                        },
+                        "description": "This endpoint allows authenticated users to activate a subscription plan."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"status\": true,\n    \"message\": \"Successfully activated subscription plan\",\n    \"data\": {\n        \"user_id\": 1,\n        \"subscription_id\": 18,\n        \"id\": 2\n    }\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"error\": \"Unauthenticated.\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n    \"errors\": {\n        \"id\": [\n            \"The id field is required.\"\n        ]\n    }\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 500,
+                            "body": "{\n    \"success\": false,\n    \"message\": \"Internal Server Error\"\n}",
                             "name": ""
                         }
                     ]

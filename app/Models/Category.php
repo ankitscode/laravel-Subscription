@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\User;
+use App\Models\Interest;
 use App\Traits\MyAutiting;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
 
 class Category extends Model
 {
@@ -45,8 +46,14 @@ class Category extends Model
     {
         return $this->belongsTo(User::class, 'created_by');
     }
+    
     public function updated_by()
     {
         return $this->belongsTo(User::class, 'updated_by');
+    }
+
+    public function interests()
+    {
+        return $this->hasOne(Interest::class, 'id', 'media_id');
     }
 }

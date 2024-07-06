@@ -28,7 +28,7 @@ endpoints:
         name: email
         description: 'valid email address The email of the admin.'
         required: true
-        example: bryana14@example.net
+        example: tromp.sunny@example.org
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -37,14 +37,14 @@ endpoints:
         name: password
         description: 'min:8 The password of the admin.'
         required: true
-        example: "veLt8n$'ft'G6"
+        example: '1/;mQ?J_N],f6Xb'
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      email: bryana14@example.net
-      password: "veLt8n$'ft'G6"
+      email: tromp.sunny@example.org
+      password: '1/;mQ?J_N],f6Xb'
     fileParameters: []
     responses:
       -
@@ -91,6 +91,144 @@ endpoints:
         headers: []
         description: ''
         custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/password/email
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Send a password reset link to the specified email address.'
+      description: |-
+        This endpoint sends a password reset link to the provided email address.
+        If successful, it returns a JSON response with a success message and status true.
+        If unsuccessful, it returns a JSON response with an error message and status false.
+
+        Request:
+        - email: Required email address to send the reset link.
+
+        Response (Success):
+        {
+            "message": "Reset link sent to your email.",
+            "status": true
+        }
+
+        Response (Failure):
+        {
+            "message": "Unable to send reset link.",
+            "status": false
+        }
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      email:
+        name: email
+        description: 'Must be a valid email address.'
+        required: true
+        example: boyer.roxane@example.net
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      email: boyer.roxane@example.net
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/password/reset
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: "Reset the user's password."
+      description: |-
+        This endpoint resets the password of the user with the provided token and email address.
+        If successful, it returns a JSON response with a success message and status true.
+        If unsuccessful, it returns a JSON response with an error message and status false.
+
+        Request:
+        - token: Required token for password reset.
+        - email: Required email address of the user.
+        - password: Required new password for the user (confirmed with password_confirmation).
+
+        Response (Success):
+        {
+            "message": "Password has been reset.",
+            "status": true
+        }
+
+        Response (Failure):
+        {
+            "message": "Unable to reset password.",
+            "status": false
+        }
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      token:
+        name: token
+        description: ''
+        required: true
+        example: eveniet
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      email:
+        name: email
+        description: 'Must be a valid email address.'
+        required: true
+        example: randal.weissnat@example.net
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      password:
+        name: password
+        description: ''
+        required: true
+        example: fugiat
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      token: eveniet
+      email: randal.weissnat@example.net
+      password: fugiat
+    fileParameters: []
+    responses: []
     responseFields: []
     auth: []
     controller: null

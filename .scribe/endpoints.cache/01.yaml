@@ -89,7 +89,7 @@ endpoints:
         name: full_name
         description: 'The full name of the admin admin.'
         required: true
-        example: provident
+        example: ducimus
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -98,7 +98,7 @@ endpoints:
         name: phone
         description: 'The phone number of the admin admin.'
         required: true
-        example: nulla
+        example: est
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -107,7 +107,7 @@ endpoints:
         name: email
         description: 'valid email address The email address of the admin admin. Must be unique.'
         required: true
-        example: althea.kunze@example.org
+        example: bashirian.elmer@example.com
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -116,7 +116,7 @@ endpoints:
         name: birthdate
         description: 'optional The birthdate of the admin admin (YYYY-MM-DD format).'
         required: false
-        example: et
+        example: vel
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -125,7 +125,7 @@ endpoints:
         name: gender_type
         description: 'optional The gender type of the admin admin. Allowed values: male, female, other.'
         required: false
-        example: eius
+        example: omnis
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -134,7 +134,7 @@ endpoints:
         name: is_active
         description: 'optional Whether the admin admin is active or not (true/false).'
         required: false
-        example: false
+        example: true
         type: boolean
         enumValues: []
         exampleWasSpecified: false
@@ -143,7 +143,7 @@ endpoints:
         name: password
         description: 'The password for the admin admin. Minimum length: 8 characters.'
         required: true
-        example: "xHG[q[}Gfe'`/m-K"
+        example: 'Vo:-8Yd\]:SXrVHp'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -162,21 +162,21 @@ endpoints:
         description: 'Array of role IDs assigned to the admin admin.'
         required: true
         example:
-          - eum
+          - nemo
         type: 'string[]'
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      full_name: provident
-      phone: nulla
-      email: althea.kunze@example.org
-      birthdate: et
-      gender_type: eius
-      is_active: false
-      password: "xHG[q[}Gfe'`/m-K"
+      full_name: ducimus
+      phone: est
+      email: bashirian.elmer@example.com
+      birthdate: vel
+      gender_type: omnis
+      is_active: true
+      password: 'Vo:-8Yd\]:SXrVHp'
       role_ids:
-        - eum
+        - nemo
     fileParameters:
       image: null
     responses:
@@ -255,13 +255,13 @@ endpoints:
         name: id
         description: 'The ID of the updateAdmin.'
         required: true
-        example: ab
+        example: quasi
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanUrlParameters:
-      id: ab
+      id: quasi
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -269,7 +269,7 @@ endpoints:
         name: full_name
         description: 'The full name of the admin user.'
         required: true
-        example: nisi
+        example: sequi
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -278,7 +278,7 @@ endpoints:
         name: phone
         description: 'The phone number of the admin user.'
         required: true
-        example: nostrum
+        example: voluptatum
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -287,7 +287,7 @@ endpoints:
         name: gender_type
         description: 'optional The gender type of the admin user. Allowed values: male, female, other.'
         required: false
-        example: aliquam
+        example: nihil
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -296,7 +296,7 @@ endpoints:
         name: birthdate
         description: 'optional The birthdate of the admin user (YYYY-MM-DD format).'
         required: false
-        example: rem
+        example: maiores
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -305,7 +305,7 @@ endpoints:
         name: email
         description: 'valid email address The email address of the admin user. Must be unique.Non editable.'
         required: true
-        example: alek.graham@example.org
+        example: ckuhlman@example.com
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -314,7 +314,7 @@ endpoints:
         name: is_active
         description: 'optional Whether the admin user is active or not (true/false).'
         required: false
-        example: false
+        example: true
         type: boolean
         enumValues: []
         exampleWasSpecified: false
@@ -323,7 +323,7 @@ endpoints:
         name: password
         description: 'The password for the admin user. Minimum length: 8 characters.'
         required: true
-        example: ',ITdL&~_osX3W0lj85&k'
+        example: "`'x*~TA[.oRy"
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -333,7 +333,7 @@ endpoints:
         description: 'Array of role IDs assigned to the admin user.'
         required: true
         example:
-          - vel
+          - adipisci
         type: 'string[]'
         enumValues: []
         exampleWasSpecified: false
@@ -348,15 +348,15 @@ endpoints:
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      full_name: nisi
-      phone: nostrum
-      gender_type: aliquam
-      birthdate: rem
-      email: alek.graham@example.org
-      is_active: false
-      password: ',ITdL&~_osX3W0lj85&k'
+      full_name: sequi
+      phone: voluptatum
+      gender_type: nihil
+      birthdate: maiores
+      email: ckuhlman@example.com
+      is_active: true
+      password: "`'x*~TA[.oRy"
       role_ids:
-        - vel
+        - adipisci
     fileParameters:
       image: null
     responses:
@@ -441,13 +441,13 @@ endpoints:
         name: id
         description: 'The ID of the updateadminimage.'
         required: true
-        example: dolorem
+        example: rerum
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanUrlParameters:
-      id: dolorem
+      id: rerum
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -509,76 +509,6 @@ endpoints:
         headers: []
         description: ''
         custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - POST
-    uri: api/changepassword
-    metadata:
-      groupName: 'admin Management'
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Change auth  user password.'
-      description: ''
-      authenticated: true
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      old_password:
-        name: old_password
-        description: ''
-        required: true
-        example: ducimus
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        custom: []
-      password:
-        name: password
-        description: 'Must be at least 8 characters.'
-        required: true
-        example: '~as,P$kC5_Pt'
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        custom: []
-      full_name:
-        name: full_name
-        description: 'The full name of the admin user.'
-        required: true
-        example: officiis
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        custom: []
-      phone:
-        name: phone
-        description: 'The phone number of the admin user.'
-        required: true
-        example: fugiat
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        custom: []
-    cleanBodyParameters:
-      old_password: ducimus
-      password: '~as,P$kC5_Pt'
-      full_name: officiis
-      phone: fugiat
-    fileParameters: []
-    responses: []
     responseFields: []
     auth: []
     controller: null
@@ -680,13 +610,13 @@ endpoints:
         name: id
         description: 'The ID of the user to delete.'
         required: true
-        example: et
+        example: enim
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanUrlParameters:
-      id: et
+      id: enim
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -735,6 +665,76 @@ endpoints:
         headers: []
         description: ''
         custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/changepassword
+    metadata:
+      groupName: 'admin Management'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Change auth  user password.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      old_password:
+        name: old_password
+        description: ''
+        required: true
+        example: nihil
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      password:
+        name: password
+        description: 'Must be at least 8 characters.'
+        required: true
+        example: 'r~h|ssOhy:'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      full_name:
+        name: full_name
+        description: 'The full name of the admin user.'
+        required: true
+        example: consequuntur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      phone:
+        name: phone
+        description: 'The phone number of the admin user.'
+        required: true
+        example: sit
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      old_password: nihil
+      password: 'r~h|ssOhy:'
+      full_name: consequuntur
+      phone: sit
+    fileParameters: []
+    responses: []
     responseFields: []
     auth: []
     controller: null

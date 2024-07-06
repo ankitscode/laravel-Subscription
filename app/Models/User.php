@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Media;
+use App\Models\Interest;
 use App\Traits\MyAutiting;
  use Laravel\Passport\HasApiTokens;
 use Illuminate\Support\Facades\Log;
@@ -118,5 +119,10 @@ class User extends Authenticatable implements Auditable
     public static function mprint($obj)
     {
         Log::info(print_r($obj, true));
+    }
+
+    public function interests()
+    {
+        return $this->hasMany(Interest::class, 'id', 'media_id');
     }
 }

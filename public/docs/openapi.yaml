@@ -244,7 +244,7 @@ paths:
                 name:
                   type: string
                   description: 'The new name for the category.'
-                  example: non
+                  example: inventore
               required:
                 - name
     parameters:
@@ -252,7 +252,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the category to update.'
-        example: 14
+        example: 13
         required: true
         schema:
           type: integer
@@ -310,7 +310,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the category to delete.'
-        example: 7
+        example: 6
         required: true
         schema:
           type: integer
@@ -433,20 +433,76 @@ paths:
                 email:
                   type: string
                   description: 'valid email address The email of the admin.'
-                  example: bryana14@example.net
+                  example: tromp.sunny@example.org
                 password:
                   type: string
                   description: 'min:8 The password of the admin.'
-                  example: "veLt8n$'ft'G6"
+                  example: '1/;mQ?J_N],f6Xb'
               required:
                 - email
                 - password
       security: []
-  '/api/order/{id}':
+  /api/password/email:
+    post:
+      summary: 'Send a password reset link to the specified email address.'
+      operationId: sendAPasswordResetLinkToTheSpecifiedEmailAddress
+      description: "This endpoint sends a password reset link to the provided email address.\nIf successful, it returns a JSON response with a success message and status true.\nIf unsuccessful, it returns a JSON response with an error message and status false.\n\nRequest:\n- email: Required email address to send the reset link.\n\nResponse (Success):\n{\n    \"message\": \"Reset link sent to your email.\",\n    \"status\": true\n}\n\nResponse (Failure):\n{\n    \"message\": \"Unable to send reset link.\",\n    \"status\": false\n}"
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: 'Must be a valid email address.'
+                  example: boyer.roxane@example.net
+              required:
+                - email
+      security: []
+  /api/password/reset:
+    post:
+      summary: "Reset the user's password."
+      operationId: resetTheUsersPassword
+      description: "This endpoint resets the password of the user with the provided token and email address.\nIf successful, it returns a JSON response with a success message and status true.\nIf unsuccessful, it returns a JSON response with an error message and status false.\n\nRequest:\n- token: Required token for password reset.\n- email: Required email address of the user.\n- password: Required new password for the user (confirmed with password_confirmation).\n\nResponse (Success):\n{\n    \"message\": \"Password has been reset.\",\n    \"status\": true\n}\n\nResponse (Failure):\n{\n    \"message\": \"Unable to reset password.\",\n    \"status\": false\n}"
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+                  description: ''
+                  example: eveniet
+                email:
+                  type: string
+                  description: 'Must be a valid email address.'
+                  example: randal.weissnat@example.net
+                password:
+                  type: string
+                  description: ''
+                  example: fugiat
+              required:
+                - token
+                - email
+                - password
+      security: []
+  /api/order:
     post:
       summary: 'Store a new order.'
       operationId: storeANewOrder
-      description: ''
+      description: 'This endpoint allows authenticated users to genrate unique id for subscription.'
       parameters: []
       responses:
         200:
@@ -496,18 +552,199 @@ paths:
                 id:
                   type: integer
                   description: 'The ID of the subscription to associate with the order.'
-                  example: 9
+                  example: 8
               required:
                 - id
+  /api/orderlist:
+    get:
+      summary: 'Retrieve a list of all orders.'
+      operationId: retrieveAListOfAllOrders
+      description: 'This endpoint retrieves a list of all orders available in the system.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: true
+                  message: 'succsessfully get all orders'
+                  data:
+                    -
+                      id: 1
+                      order_id: 4c3db506-35dc-4382-b0e2-3a195fd4a347
+                      subscription_id: 16
+                      is_active: 1
+                    -
+                      id: 4
+                      order_id: 896da7a6-82e6-4b11-8748-fd9ddd73ff38
+                      subscription_id: 18
+                      is_active: 1
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'succsessfully get all orders'
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        order_id: 4c3db506-35dc-4382-b0e2-3a195fd4a347
+                        subscription_id: 16
+                        is_active: 1
+                      -
+                        id: 4
+                        order_id: 896da7a6-82e6-4b11-8748-fd9ddd73ff38
+                        subscription_id: 18
+                        is_active: 1
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        order_id:
+                          type: string
+                          example: 4c3db506-35dc-4382-b0e2-3a195fd4a347
+                        subscription_id:
+                          type: integer
+                          example: 16
+                        is_active:
+                          type: integer
+                          example: 1
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: Unauthenticated.
+                properties:
+                  error:
+                    type: string
+                    example: Unauthenticated.
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: false
+                  message: 'Internal Server Error'
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Internal Server Error'
+      tags:
+        - Orders
+  '/api/orderview/{id}':
+    get:
+      summary: 'Retrieve details of a specific order.'
+      operationId: retrieveDetailsOfASpecificOrder
+      description: 'This endpoint retrieves details of a specific order identified by its ID.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: true
+                  message: 'sucessfully get order detail'
+                  data:
+                    id: 1
+                    order_id: 4c3db506-35dc-4382-b0e2-3a195fd4a347
+                    subscription_id: 16
+                    is_active: 1
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'sucessfully get order detail'
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      order_id:
+                        type: string
+                        example: 4c3db506-35dc-4382-b0e2-3a195fd4a347
+                      subscription_id:
+                        type: integer
+                        example: 16
+                      is_active:
+                        type: integer
+                        example: 1
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: Unauthenticated.
+                properties:
+                  error:
+                    type: string
+                    example: Unauthenticated.
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: false
+                  message: 'Order not found.'
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Order not found.'
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: false
+                  message: 'Internal Server Error'
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Internal Server Error'
+      tags:
+        - Orders
     parameters:
       -
         in: path
         name: id
         description: 'The ID of the order.'
-        example: molestias
+        example: 17
         required: true
         schema:
-          type: string
+          type: integer
   /api/getsubscription:
     get:
       summary: 'Retrieve the subscriptions for the authenticated user.'
@@ -762,7 +999,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the subscription to update.'
-        example: 8
+        example: 9
         required: true
         schema:
           type: integer
@@ -820,7 +1057,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the subscription to be deleted.'
-        example: 4
+        example: 2
         required: true
         schema:
           type: integer
@@ -909,31 +1146,31 @@ paths:
                 full_name:
                   type: string
                   description: 'The full name of the admin admin.'
-                  example: provident
+                  example: ducimus
                 phone:
                   type: string
                   description: 'The phone number of the admin admin.'
-                  example: nulla
+                  example: est
                 email:
                   type: string
                   description: 'valid email address The email address of the admin admin. Must be unique.'
-                  example: althea.kunze@example.org
+                  example: bashirian.elmer@example.com
                 birthdate:
                   type: string
                   description: 'optional The birthdate of the admin admin (YYYY-MM-DD format).'
-                  example: et
+                  example: vel
                 gender_type:
                   type: string
                   description: 'optional The gender type of the admin admin. Allowed values: male, female, other.'
-                  example: eius
+                  example: omnis
                 is_active:
                   type: boolean
                   description: 'optional Whether the admin admin is active or not (true/false).'
-                  example: false
+                  example: true
                 password:
                   type: string
                   description: 'The password for the admin admin. Minimum length: 8 characters.'
-                  example: "xHG[q[}Gfe'`/m-K"
+                  example: 'Vo:-8Yd\]:SXrVHp'
                 image:
                   type: string
                   format: binary
@@ -942,7 +1179,7 @@ paths:
                   type: array
                   description: 'Array of role IDs assigned to the admin admin.'
                   example:
-                    - eum
+                    - nemo
                   items:
                     type: string
               required:
@@ -1008,36 +1245,36 @@ paths:
                 full_name:
                   type: string
                   description: 'The full name of the admin user.'
-                  example: nisi
+                  example: sequi
                 phone:
                   type: string
                   description: 'The phone number of the admin user.'
-                  example: nostrum
+                  example: voluptatum
                 gender_type:
                   type: string
                   description: 'optional The gender type of the admin user. Allowed values: male, female, other.'
-                  example: aliquam
+                  example: nihil
                 birthdate:
                   type: string
                   description: 'optional The birthdate of the admin user (YYYY-MM-DD format).'
-                  example: rem
+                  example: maiores
                 email:
                   type: string
                   description: 'valid email address The email address of the admin user. Must be unique.Non editable.'
-                  example: alek.graham@example.org
+                  example: ckuhlman@example.com
                 is_active:
                   type: boolean
                   description: 'optional Whether the admin user is active or not (true/false).'
-                  example: false
+                  example: true
                 password:
                   type: string
                   description: 'The password for the admin user. Minimum length: 8 characters.'
-                  example: ',ITdL&~_osX3W0lj85&k'
+                  example: "`'x*~TA[.oRy"
                 role_ids:
                   type: array
                   description: 'Array of role IDs assigned to the admin user.'
                   example:
-                    - vel
+                    - adipisci
                   items:
                     type: string
                 image:
@@ -1056,7 +1293,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the updateAdmin.'
-        example: ab
+        example: quasi
         required: true
         schema:
           type: string
@@ -1147,47 +1384,10 @@ paths:
         in: path
         name: id
         description: 'The ID of the updateadminimage.'
-        example: dolorem
+        example: rerum
         required: true
         schema:
           type: string
-  /api/changepassword:
-    post:
-      summary: 'Change auth  user password.'
-      operationId: changeAuthUserPassword
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - 'admin Management'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                old_password:
-                  type: string
-                  description: ''
-                  example: ducimus
-                password:
-                  type: string
-                  description: 'Must be at least 8 characters.'
-                  example: '~as,P$kC5_Pt'
-                full_name:
-                  type: string
-                  description: 'The full name of the admin user.'
-                  example: officiis
-                phone:
-                  type: string
-                  description: 'The phone number of the admin user.'
-                  example: fugiat
-              required:
-                - old_password
-                - password
-                - full_name
-                - phone
   /api/logout:
     post:
       summary: 'Log out the authenticated user.'
@@ -1403,10 +1603,255 @@ paths:
         in: path
         name: id
         description: 'The ID of the user to delete.'
-        example: et
+        example: enim
         required: true
         schema:
           type: string
+  /api/changepassword:
+    post:
+      summary: 'Change auth  user password.'
+      operationId: changeAuthUserPassword
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'admin Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                old_password:
+                  type: string
+                  description: ''
+                  example: nihil
+                password:
+                  type: string
+                  description: 'Must be at least 8 characters.'
+                  example: 'r~h|ssOhy:'
+                full_name:
+                  type: string
+                  description: 'The full name of the admin user.'
+                  example: consequuntur
+                phone:
+                  type: string
+                  description: 'The phone number of the admin user.'
+                  example: sit
+              required:
+                - old_password
+                - password
+                - full_name
+                - phone
+  /api/userinterest:
+    post:
+      summary: 'Store user interests.'
+      operationId: storeUserInterests
+      description: 'Creates interests for the authenticated user based on provided category IDs.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: true
+                  message: 'Successfully created interests'
+                  data:
+                    user_id: 1
+                    category_id: 13
+                    id: 3
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Successfully created interests'
+                  data:
+                    type: object
+                    properties:
+                      user_id:
+                        type: integer
+                        example: 1
+                      category_id:
+                        type: integer
+                        example: 13
+                      id:
+                        type: integer
+                        example: 3
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: Unauthenticated.
+                properties:
+                  error:
+                    type: string
+                    example: Unauthenticated.
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  errors:
+                    id:
+                      - 'The id field is required.'
+                properties:
+                  errors:
+                    type: object
+                    properties:
+                      id:
+                        type: array
+                        example:
+                          - 'The id field is required.'
+                        items:
+                          type: string
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: false
+                  message: 'Internal Server Error'
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Internal Server Error'
+      tags:
+        - user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: array
+                  description: 'Array of category IDs.'
+                  example:
+                    - 11
+                    - 12
+                  items:
+                    type: string
+              required:
+                - id
+  /api/usersubscription:
+    post:
+      summary: 'Store a new subscription plan for the authenticated user.'
+      operationId: storeANewSubscriptionPlanForTheAuthenticatedUser
+      description: 'This endpoint allows authenticated users to activate a subscription plan.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: true
+                  message: 'Successfully activated subscription plan'
+                  data:
+                    user_id: 1
+                    subscription_id: 18
+                    id: 2
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Successfully activated subscription plan'
+                  data:
+                    type: object
+                    properties:
+                      user_id:
+                        type: integer
+                        example: 1
+                      subscription_id:
+                        type: integer
+                        example: 18
+                      id:
+                        type: integer
+                        example: 2
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: Unauthenticated.
+                properties:
+                  error:
+                    type: string
+                    example: Unauthenticated.
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  errors:
+                    id:
+                      - 'The id field is required.'
+                properties:
+                  errors:
+                    type: object
+                    properties:
+                      id:
+                        type: array
+                        example:
+                          - 'The id field is required.'
+                        items:
+                          type: string
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: false
+                  message: 'Internal Server Error'
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Internal Server Error'
+      tags:
+        - user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  description: 'The ID of the subscription to activate.'
+                  example: 15
+              required:
+                - id
 tags:
   -
     name: Categories
@@ -1423,3 +1868,6 @@ tags:
   -
     name: 'admin Management'
     description: 'This API endpoint updates the profile image of an admin identified by UUID.'
+  -
+    name: user
+    description: ''

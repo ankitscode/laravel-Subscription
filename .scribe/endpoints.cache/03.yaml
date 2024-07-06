@@ -116,13 +116,13 @@ endpoints:
         name: id
         description: 'The ID of the category to update.'
         required: true
-        example: 14
+        example: 13
         type: integer
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanUrlParameters:
-      id: 14
+      id: 13
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -130,13 +130,13 @@ endpoints:
         name: name
         description: 'The new name for the category.'
         required: true
-        example: non
+        example: inventore
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      name: non
+      name: inventore
     fileParameters: []
     responses:
       -
@@ -213,13 +213,13 @@ endpoints:
         name: id
         description: 'The ID of the category to delete.'
         required: true
-        example: 7
+        example: 6
         type: integer
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanUrlParameters:
-      id: 7
+      id: 6
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

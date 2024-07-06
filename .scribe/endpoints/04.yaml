@@ -4,31 +4,21 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: 'api/order/{id}'
+    uri: api/order
     metadata:
       groupName: Orders
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
       title: 'Store a new order.'
-      description: ''
+      description: 'This endpoint allows authenticated users to genrate unique id for subscription.'
       authenticated: true
       custom: []
     headers:
       Content-Type: application/json
       Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the order.'
-        required: true
-        example: molestias
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        custom: []
-    cleanUrlParameters:
-      id: molestias
+    urlParameters: []
+    cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -36,13 +26,13 @@ endpoints:
         name: id
         description: 'The ID of the subscription to associate with the order.'
         required: true
-        example: 9
+        example: 8
         type: integer
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      id: 9
+      id: 8
     fileParameters: []
     responses:
       -
@@ -64,6 +54,164 @@ endpoints:
         content: |-
           {
               "error": "Unauthenticated."
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 500
+        content: |-
+          {
+              "success": false,
+              "message": "Internal Server Error"
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/orderlist
+    metadata:
+      groupName: Orders
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Retrieve a list of all orders.'
+      description: 'This endpoint retrieves a list of all orders available in the system.'
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+              "status": true,
+              "message": "succsessfully get all orders",
+              "data": [
+                  {
+                      "id": 1,
+                      "order_id": "4c3db506-35dc-4382-b0e2-3a195fd4a347",
+                      "subscription_id": 16,
+                      "is_active": 1
+                  },
+                  {
+                      "id": 4,
+                      "order_id": "896da7a6-82e6-4b11-8748-fd9ddd73ff38",
+                      "subscription_id": 18,
+                      "is_active": 1
+                  }
+              ]
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+              "error": "Unauthenticated."
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 500
+        content: |-
+          {
+              "success": false,
+              "message": "Internal Server Error"
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/orderview/{id}'
+    metadata:
+      groupName: Orders
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Retrieve details of a specific order.'
+      description: 'This endpoint retrieves details of a specific order identified by its ID.'
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the order.'
+        required: true
+        example: 17
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanUrlParameters:
+      id: 17
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+              "status": true,
+              "message": "sucessfully get order detail",
+              "data": {
+                  "id": 1,
+                  "order_id": "4c3db506-35dc-4382-b0e2-3a195fd4a347",
+                  "subscription_id": 16,
+                  "is_active": 1
+              }
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+              "error": "Unauthenticated."
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 404
+        content: |-
+          {
+              "success": false,
+              "message": "Order not found."
           }
         headers: []
         description: ''

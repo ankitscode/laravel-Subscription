@@ -1,12 +1,13 @@
 <?php
 
-use App\Http\Controllers\AdminController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\AdminAuthController;
-use App\Http\Controllers\Api\SubscriptionApiController;
-use App\Http\Controllers\Api\CategoriesApiController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Api\InterestController;
 use App\Http\Controllers\Api\OrderApiController;
+use App\Http\Controllers\Api\AdminAuthController;
+use App\Http\Controllers\Api\CategoriesApiController;
+use App\Http\Controllers\Api\SubscriptionApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +20,6 @@ use App\Http\Controllers\Api\OrderApiController;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
 /**
  * Login Api
  */
@@ -44,14 +42,26 @@ Route::group(['middleware' => ['auth:adminapi']], function () {
 
     //##Api for getting suscription
     Route::get('/getsubscription', [SubscriptionApiController::class, 'getSubscription']);
+    
     Route::post('/updatesubscription/{id}', [SubscriptionApiController::class, 'updateSubscription']);
     Route::post('/destroysubscription/{id}', [SubscriptionApiController::class, 'destroySubscription']);
 
     //##Api for getting categories
     Route::get('/getcategories', [CategoriesApiController::class, 'getCategories']);
+    
     Route::post('/updatecategories/{id}', [CategoriesApiController::class, 'updateCategory']);
     Route::post('/destroycategory/{id}', [CategoriesApiController::class, 'destroyCategory']);
 
     //##Api for orders
-    Route::post('/order/{id}', [OrderApiController::class, 'store']);
+    Route::post('/order', [OrderApiController::class, 'store']);
+    Route::get('/orderlist', [OrderApiController::class, 'orderList']);
+    Route::get('/orderview/{id}', [OrderApiController::class, 'orderView']);
+
+     //##Api for storeuser interest
+    Route::post('/userinterest', [InterestController::class, 'storeUserInterest']);
+
+     //##Api for storeuser subscription
+    Route::post('/usersubscription', [SubscriptionApiController::class, 'storeUserSubscription']);
+
+
 });
